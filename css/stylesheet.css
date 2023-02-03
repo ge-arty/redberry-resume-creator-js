@@ -1,0 +1,40 @@
+body {
+  max-width: 1980px;
+}
+.app__container {
+  width: 100%;
+  margin: 0 auto;
+  background: url("../img/shutterstock_2189773743 1.png");
+  background-position: center;
+  position: relative;
+  height: 100vh;
+}
+.app__start--logo {
+  padding: 25px 0 25px 70px;
+}
+.app__start--line {
+  position: absolute;
+  border: 1px solid #1a1a1a;
+  width: 89.9%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+.app__start--btn {
+  background: #1a1a1a;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 20px;
+  font-style: normal;
+  width: 23.4%;
+  padding: 18px 0;
+  text-align: center;
+  margin: 0 auto;
+  cursor: pointer;
+  margin-top: 424px;
+}
+.app__start--stamp {
+  position: absolute;
+  top: 473px;
+  left: 54.3%;
+}
