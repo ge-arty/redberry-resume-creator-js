@@ -7,10 +7,17 @@ body {
   font-family: "HelveticaNeue";
 }
 input {
-  border: 1px solid #bcbcbc;
+  border: 2px solid #bcbcbc;
   border-radius: 4px;
 }
 input:focus {
+  outline: 0;
+}
+textarea {
+  border: 2px solid #bcbcbc;
+  border-radius: 4px;
+}
+textarea:focus {
   outline: 0;
 }
 label {
@@ -64,7 +71,7 @@ label {
   text-align: center;
   cursor: pointer;
   position: absolute;
-  top: 513px;
+  top: 500px;
   left: 37.9%;
 }
 .app__start--stamp {
@@ -79,12 +86,6 @@ label {
   width: 100%;
   display: none;
   justify-content: center;
-  align-items: center;
-}
-/* Resume generator Page */
-.app__resume--page {
-  width: 42.9%;
-  background-color: aqua;
 }
 /* Personal Info Page */
 .app__personal--page {
@@ -227,6 +228,47 @@ label {
   border: none;
   float: right;
 }
+/* Resume generator Page */
+.app__resume--page {
+  width: 42.9%;
+  background-color: aqua;
+}
+.app__resume--personal {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 48px 75px 0 80px;
+}
+.app__resume--personalinfo {
+  width: 70%;
+}
+.app__resume--fullname {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 42px;
+  color: #f93b1d;
+}
+.app__resume--about {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #f93b1d;
+}
+.app__resume--about--text {
+  margin-top: 15px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+}
+.app__resume--imgbox {
+  width: 30%;
+}
+/* input colors */
 .app__input--green {
   border: 1px solid #98e37e;
 }
