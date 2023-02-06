@@ -9,15 +9,65 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="app__container">
-      <!-- Starting Page/Section -->
-      <section class="app__start--page">
-        <img class="app__start--logo" src="./img/LOGO-02 3.png" alt="logo" />
-        <img class="app__start--stamp" src="./img/LOGO-40 1.png" alt="stamp" />
-        <div class="app__start--line"></div>
-        <div class="app__start--btn">ᲩᲐᲜᲐᲬᲔᲠᲘᲡ ᲓᲐᲛᲐᲢᲔᲑᲐ</div>
-      </section>
-      <!--  -->
+    <!-- Starting Page/Section -->
+    <section class="app__start--page">
+      <img class="app__start--logo" src="./img/LOGO-02 3.png" alt="logo" />
+      <div class="app__start--line"></div>
+      <img class="app__start--stamp" src="./img/LOGO-40 1.png" alt="stamp" />
+      <div class="app__start--btn">ᲩᲐᲜᲐᲬᲔᲠᲘᲡ ᲓᲐᲛᲐᲢᲔᲑᲐ</div>
+    </section>
+    <section class="app__working--section"> 
+      <!-- Personal Info Section -->
+      <section class="app__personal--page">
+        <button class="app__personal--backbtn">
+          <img class="app__personal--btnimg" src="./img/arrow-back.png" alt="btn-icon">
+        </button>
+        <div class="app__personal--header">        
+          <h2 class="app__personal--title">ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ</h2>
+          <p class="app__personal--pagenum">1/3</p>
+          </div>
+        <form class="app__personal--form">
+          <div class="app__personal--inputbox"> 
+            <div>            
+            <label for="name">სახელი</label>
+            <input placeholder="ანზორ" class="app__personal--name--input" type="text">
+            <p class="app__input--validation">მინიმუმ 2 ასო, ქართული ასოები</p>
+            </div>
+            <div>            
+            <label for="lastname">გვარი</label>
+            <input placeholder="მუმლაძე" class="app__personal--name--input" type="text">
+            <p class="app__input--validation">მინიმუმ 2 ასო, ქართული ასოები</p>   
+            </div>
+          </div>
+          <div class="app__upload--box">            
+            <label for="file__upload">პირადი ფოტოს ატვირთვა</label>
+            <input class="app__file--input" placeholder="ატვირთვა" class="app__upload--input" type="file"> 
+          </div>
+          <div class="app__about--box">
+            <label for="about">ჩემ შესახებ (არასავალდებულო)</label>
+            <textarea rows="10" cols="50" class="app__input--about" placeholder="ზოგადი ინფო შენ შესახებ"></textarea>
+          </div>
+          <div class="app__email--box">
+            <label for="about">ელ.ფოსტა</label>
+            <input class="app__input--email" placeholder="anzorr666@redberry.ge" type="text">
+            <p class="app__input--validation">უნდა მთავრდებოდეს @redberry.ge-ით</p>
+          </div>
+          <div class="app__mobile--box">
+            <label for="about">მობილურის ნომერი</label>
+            <input class="app__input--mobile" placeholder="+995 551 12 34 56" type="text">
+            <p class="app__input--validation">უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს</p>
+          </div>
+          <div class="app__personal--btnbox">
+            <button class="app__personal--nextbtn">ᲨᲔᲛᲓᲔᲒᲘ</button>
+          </div>
+          
+        </form>
+      </section>   
+      <!-- Page where we can see generating resume -->
+      <section class="app__resume--page"></section>
+    </section>
+
     </div>
+    <script src="./main.js"></script>
   </body>
 </html>

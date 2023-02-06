@@ -1,15 +1,46 @@
-body {
-  max-width: 1980px;
+@font-face {
+  font-family: "HelveticaNeue";
+  src: url("../font/HelveticaNeue.ttc");
 }
-.app__container {
+.app__input--validation {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  color: #2e2e2e;
+}
+
+input {
+  border: 1px solid #bcbcbc;
+  border-radius: 4px;
+}
+
+label {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 21px;
+  color: #000000;
+}
+body {
+  max-width: 1920px;
+  font-family: "HelveticaNeue";
+}
+/* Start/Home Page */
+.app__start--page {
   width: 100%;
   margin: 0 auto;
   background: url("../img/shutterstock_2189773743 1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
   position: relative;
   height: 100vh;
 }
 .app__start--logo {
+  width: 236px;
   padding: 25px 0 25px 70px;
 }
 .app__start--line {
@@ -27,15 +58,166 @@ body {
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
-  width: 23.4%;
+  width: 24.1%;
   padding: 18px 0;
   text-align: center;
-  margin: 0 auto;
   cursor: pointer;
-  margin-top: 424px;
+  position: absolute;
+  top: 513px;
+  left: 37.9%;
 }
 .app__start--stamp {
+  display: block;
+  width: 15.5%;
+  margin-top: 384px;
+  margin-left: 56%;
+}
+
+/* Parent of generator and fields window */
+.app__working--section {
+  width: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+/* Resume generator Page */
+.app__resume--page {
+  width: 42.9%;
+  background-color: aqua;
+}
+/* Personal Info Page */
+.app__personal--page {
+  width: 57.1%;
+  background-color: #c2c1c163;
+  position: relative;
+  padding-bottom: 65px;
+}
+.app__personal--backbtn {
+  background: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: none;
   position: absolute;
-  top: 473px;
-  left: 54.3%;
+  top: 45px;
+  left: 4%;
+  cursor: pointer;
+}
+.app__personal--btnimg {
+  width: 9.21px;
+  height: 16px;
+}
+.app__personal--header {
+  width: 72.8%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+  padding: 12px 0;
+  margin-top: 35px;
+  border-bottom: 1px solid #1a1a1a;
+}
+.app__personal--title {
+  width: 100%;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29.3px;
+}
+.app__personal--pagenum {
+  font-size: 20px;
+  font-weight: 400;
+  width: 100%;
+  text-align: Right;
+}
+.app__personal--form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 77px;
+  width: 72.8%;
+}
+.app__personal--inputbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  width: 100%;
+}
+.app__personal--inputbox div {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  width: 46.1%;
+  row-gap: 8px;
+}
+.app__personal--name--input {
+  width: 100%;
+  padding: 14px 16px;
+  height: 48px;
+}
+.app__upload--box {
+  margin-top: 54px;
+}
+.app__file--input {
+  height: 27px;
+}
+
+.app__about--box {
+  margin-top: 49px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  row-gap: 8px;
+  width: 100%;
+}
+.app__input--about {
+  padding: 13px 16px;
+  height: 103px;
+  width: 100%;
+  resize: none;
+}
+.app__email--box {
+  margin-top: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  row-gap: 8px;
+  width: 100%;
+}
+.app__input--email {
+  width: 100%;
+  padding: 14px 16px;
+  height: 48px;
+}
+.app__mobile--box {
+  margin-top: 29px;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  row-gap: 8px;
+  width: 100%;
+}
+.app__input--mobile {
+  width: 100%;
+  padding: 14px 16px;
+  height: 48px;
+}
+.app__personal--nextbtn {
+  margin-top: 160px;
+  height: 48px;
+  width: 151px;
+  font-size: 16px;
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  border-radius: 4px;
+  color: #ffffff;
+  background: #6b40e3;
+  border: none;
+  float: right;
 }
