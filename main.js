@@ -2,7 +2,7 @@
 const homeBtn = document.querySelector(".app__start--btn");
 const homePage = document.querySelector(".app__start--page");
 // Personal Page Variables
-const personalBackBtn = document.querySelector(".app__personal--backbtn");
+const homeBackBtn = document.querySelector(".app__personal--backbtn");
 const appSection = document.querySelector(".app__working--section");
 const personalInfoPage = document.querySelector(".app__personal--page");
 const picUploadBtn = document.querySelector(".app__upload--btn");
@@ -18,6 +18,8 @@ const mobileInput = document.querySelector(".app__input--mobile");
 const resumePage = document.querySelector(".app__resume--page");
 const fullNameResume = document.querySelector(".app__resume--fullname");
 const resumePic = document.querySelector(".app__resume--image");
+// Experience Page
+const experForm = document.querySelector(".app__experience--form");
 // Page Titles and counts
 const pageTitle = document.querySelector(".app__personal--title");
 const pageNumber = document.querySelector(".app__personal--pagenum");
@@ -117,12 +119,13 @@ personalNextBtn.addEventListener("click", function (e) {
   personalForms.style.display = "none";
   pageTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
   pageNumber.textContent = "2/3";
+  experForm.style.display = "block";
 });
 homeBtn.addEventListener("click", function () {
   homePage.style.display = "none";
   appSection.style.display = "flex";
 });
-personalBackBtn.addEventListener("click", function () {
+homeBackBtn.addEventListener("click", function () {
   homePage.style.display = "block";
   appSection.style.display = "none";
 });

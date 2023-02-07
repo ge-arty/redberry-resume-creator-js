@@ -246,6 +246,7 @@ label {
 }
 /* Experience Page */
 .app__experience--form {
+  display: none;
   width: 57.1%;
   padding-bottom: 65px;
 }
