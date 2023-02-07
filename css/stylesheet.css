@@ -247,8 +247,129 @@ label {
 /* Experience Page */
 .app__experience--form {
   display: none;
-  width: 57.1%;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 77px;
+  width: 72.8%;
   padding-bottom: 65px;
+}
+.app__position--box {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  row-gap: 8px;
+  width: 100%;
+}
+.app__input--position {
+  width: 100%;
+  padding: 14px 16px;
+  height: 48px;
+}
+.app__employer--box {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  row-gap: 8px;
+  width: 100%;
+  margin-top: 31px;
+}
+.app__input--employer {
+  width: 100%;
+  padding: 14px 16px;
+  height: 48px;
+}
+.app__date--box {
+  margin-top: 31px;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.app__date--box div {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  width: 46.1%;
+  row-gap: 8px;
+}
+.app__date--input1 {
+  width: 100%;
+  padding: 14px 16px;
+  height: 48px;
+}
+.app__date--input2 {
+  width: 100%;
+  padding: 14px 16px;
+  height: 48px;
+}
+.app__description--box {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  row-gap: 8px;
+  flex-direction: column;
+  margin-top: 33px;
+}
+.app__input--description {
+  padding: 13px 16px;
+  height: 103px;
+  width: 100%;
+  resize: none;
+}
+.app__end--line {
+  border: 1px solid #c1c1c1;
+  width: 100%;
+  margin-top: 58px;
+}
+.app__addexp--btn {
+  margin-top: 59px;
+  border: none;
+  color: #fff;
+  width: 289px;
+  height: 48px;
+  background: #62a1eb;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
+.app__experience--btn-box {
+  width: 100%;
+  margin-top: 115px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.app__experience--back {
+  border: none;
+  background: #6b40e3;
+  border-radius: 4px;
+  width: 151px;
+  height: 48px;
+  color: #fff;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+.app__experience--next {
+  border: none;
+  background: #6b40e3;
+  border-radius: 4px;
+  width: 151px;
+  height: 48px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
 }
 /* Resume generator Page */
 .app__resume--page {
