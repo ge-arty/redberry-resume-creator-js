@@ -1,4 +1,4 @@
-// Start page variables
+// Start page variablesa
 const homeBtn = document.querySelector(".app__start--btn");
 const homePage = document.querySelector(".app__start--page");
 // Personal Page Variables
@@ -20,6 +20,7 @@ const fullNameResume = document.querySelector(".app__resume--fullname");
 const resumePic = document.querySelector(".app__resume--image");
 // Experience Page
 const experForm = document.querySelector(".app__experience--form");
+const experNextBtn = document.querySelector(".app__experience--next");
 // Page Titles and counts
 const pageTitle = document.querySelector(".app__personal--title");
 const pageNumber = document.querySelector(".app__personal--pagenum");
@@ -128,4 +129,10 @@ homeBtn.addEventListener("click", function () {
 homeBackBtn.addEventListener("click", function () {
   homePage.style.display = "block";
   appSection.style.display = "none";
+});
+experNextBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  experForm.style.display = "none";
+  pageTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
+  pageNumber.textContent = "3/3";
 });

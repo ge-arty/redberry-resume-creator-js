@@ -95,6 +95,32 @@
             <button class="app__experience--next">ᲨᲔᲛᲓᲔᲒᲘ</button>
           </div>
         </form>
+        <form class="app__education--form">
+          <div class="app__school--box">
+            <label for="school-name">სასწავლებელი</label>
+            <input class="app__education-school" placeholder="სასწავლებელი" type="text">
+            <p class="app__input--validation">მინიმუმ 2 სიმბოლო</p>
+          </div>
+          <div class="app__school--graduation--box">
+            <div class="app__degree--box">
+              <label for="degree">ხარისხი</label>
+              <select class="app__education--select" aria-placeholder="აირჩიეთ ხარისხი">
+                <option value="" disabled selected hidden>აირჩიეთ ხარისხი</option>
+              </select>
+            </div>
+            <div class="app__education--date--box">
+              <label for="date">დამთავრების რიცხვი</label>
+              <input class="app__education--date" type="date">
+            </div>
+          </div>
+          <div class="app__education--description--box">
+            <label for="description">აღწერა</label>
+            <textarea class="app__input--description" cols="30" rows="10"></textarea>
+          </div>
+          <div class="app__end--line"></div>
+          <button class="app__addedu--btn">სხვა სასწავლებლის დამატება</button>
+          
+        </form>
       </section>   
       <!-- Page where we can see generating resume -->
       <section class="app__resume--page">
