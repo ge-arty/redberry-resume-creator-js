@@ -5,6 +5,10 @@ const homePage = document.querySelector(".app__start--page");
 const personalBackBtn = document.querySelector(".app__personal--backbtn");
 const appSection = document.querySelector(".app__working--section");
 const personalInfoPage = document.querySelector(".app__personal--page");
+const picUploadBtn = document.querySelector(".app__upload--btn");
+const picUploadInput = document.querySelector(".app__file--input");
+const personalNextBtn = document.querySelector(".app__personal--nextbtn");
+const personalForms = document.querySelector(".app__personal--form");
 //
 const nameInput = document.querySelector(".app__personal--name--input");
 const lastNameInput = document.querySelector(".app__personal--lastname--input");
@@ -13,7 +17,10 @@ const mobileInput = document.querySelector(".app__input--mobile");
 // Resume generator page Variables
 const resumePage = document.querySelector(".app__resume--page");
 const fullNameResume = document.querySelector(".app__resume--fullname");
-
+const resumePic = document.querySelector(".app__resume--image");
+// Page Titles and counts
+const pageTitle = document.querySelector(".app__personal--title");
+const pageNumber = document.querySelector(".app__personal--pagenum");
 // PersonalInfo Validation
 function validateGeorgian(input) {
   let regExp = /^[ა-ჰ]+$/;
@@ -90,8 +97,27 @@ mobileInput.addEventListener("keyup", function () {
     mobileInput.classList.remove("app__input--red");
   }
 });
+picUploadInput.addEventListener("change", function () {
+  const file = this.files[0];
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    resumePic.src = e.target.result;
+    resumePic.style.display = "block";
+  };
+  reader.readAsDataURL(new Blob([file]));
+});
 
+picUploadBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  picUploadInput.click();
+});
 // Button functions
+personalNextBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  personalForms.style.display = "none";
+  pageTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
+  pageNumber.textContent = "2/3";
+});
 homeBtn.addEventListener("click", function () {
   homePage.style.display = "none";
   appSection.style.display = "flex";

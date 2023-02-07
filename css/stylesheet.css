@@ -5,6 +5,7 @@
 body {
   max-width: 1920px;
   font-family: "HelveticaNeue";
+  background-color: #c2c1c163;
 }
 input {
   border: 2px solid #bcbcbc;
@@ -86,13 +87,7 @@ label {
   width: 100%;
   display: none;
   justify-content: center;
-}
-/* Personal Info Page */
-.app__personal--page {
-  width: 57.1%;
-  background-color: #c2c1c163;
   position: relative;
-  padding-bottom: 65px;
 }
 .app__personal--backbtn {
   background: #fff;
@@ -109,6 +104,13 @@ label {
   width: 9.21px;
   height: 16px;
 }
+/* Personal Info Page */
+.app__personal--page {
+  width: 57.1%;
+  background-color: #c2c1c163;
+  padding-bottom: 65px;
+}
+
 .app__personal--header {
   width: 72.8%;
   display: flex;
@@ -166,7 +168,21 @@ label {
   margin-top: 54px;
 }
 .app__file--input {
+  display: none;
+}
+.app__upload--btn {
   height: 27px;
+  width: 107px;
+  background: #0e80bf;
+  border-radius: 4px;
+  border: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  cursor: pointer;
+  margin-left: 19px;
 }
 
 .app__about--box {
@@ -228,10 +244,22 @@ label {
   border: none;
   float: right;
 }
+/* Experience Page */
+.app__experience--form {
+  width: 57.1%;
+  padding-bottom: 65px;
+}
 /* Resume generator Page */
 .app__resume--page {
+  height: 1080px;
   width: 42.9%;
-  background-color: aqua;
+  background-color: #fff;
+  position: relative;
+}
+.app__resume--logo {
+  left: 9.4%;
+  top: 92%;
+  position: absolute;
 }
 .app__resume--personal {
   width: 100%;
@@ -242,6 +270,7 @@ label {
 }
 .app__resume--personalinfo {
   width: 70%;
+  height: 246px;
 }
 .app__resume--fullname {
   font-style: normal;
@@ -266,7 +295,31 @@ label {
   color: #000000;
 }
 .app__resume--imgbox {
-  width: 30%;
+  width: 100%;
+  max-width: 246px;
+  border-radius: 50%;
+}
+.app__resume--image {
+  width: 100%;
+  border-radius: 50%;
+  height: 246px;
+  display: none;
+}
+.app__resume--email--box {
+  margin-top: 17px;
+  display: flex;
+  align-items: center;
+}
+.app__resume--mobile--box {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+.app__resume--about {
+  margin-top: 34px;
+}
+.app__resume--about--text {
+  margin-top: 15px;
 }
 /* input colors */
 .app__input--green {
