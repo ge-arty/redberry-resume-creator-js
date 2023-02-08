@@ -155,7 +155,7 @@ select::after {
   text-align: Right;
 }
 .app__personal--form {
-  display: none;
+  display: flex;
   flex-direction: column;
   margin: 0 auto;
   margin-top: 77px;
@@ -407,7 +407,7 @@ select::after {
   row-gap: 8px;
   flex-direction: column;
 }
-.app__education-school {
+.app__education--school {
   width: 100%;
   padding: 14px 16px;
   height: 48px;
@@ -585,6 +585,16 @@ select::after {
 }
 .app__resume--about--text {
   margin-top: 15px;
+}
+.app__resume--experience--box {
+  padding: 24px 80px 19px 80px;
+  border-bottom: 1px solid #c8c8c8;
+}
+.app__resume--education--box {
+  padding: 24px 80px 19px 80px;
+  border-bottom: 1px solid #c8c8c8;
+}
+.app__resume--education--title {
 }
 /* input colors */
 .app__input--green {

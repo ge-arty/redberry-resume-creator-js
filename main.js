@@ -25,18 +25,54 @@ const emailSvg = document.querySelector(".email-svg");
 const mobileSvg = document.querySelector(".mobile-svg");
 const resumeAboutTitle = document.querySelector(".app__resume--about");
 const resumeAboutText = document.querySelector(".app__resume--about--text");
+const resumeExperTitle = document.querySelector(
+  ".app__resume--experience--title"
+);
+const resumeExperPosition = document.querySelector(
+  ".app__resume--experience--position"
+);
+const resumeExperDate = document.querySelector(
+  ".app__resume--experience--date"
+);
+const resumeExperDescription = document.querySelector(
+  ".app__resume--experience--description"
+);
+const resumeEduTitle = document.querySelector(".app__resume--education--title");
+const resumeEduSchool = document.querySelector(
+  ".app__resume--education--school"
+);
+const resumeEduDegree = document.querySelector(
+  ".app__resume--education--degree"
+);
+const resumeEduDate = document.querySelector(".app__resume--education--date");
+const resumeEduDescription = document.querySelector(
+  ".app__resume--education--description"
+);
 // Experience Page
 const experForm = document.querySelector(".app__experience--form");
 const experNextBtn = document.querySelector(".app__experience--next");
 const positionInput = document.querySelector(".app__input--position");
 const employerInput = document.querySelector(".app__input--employer");
+const experDate1 = document.querySelector(".app__date--input1");
+const experDate2 = document.querySelector(".app__date--input2");
+const experDescription = document.querySelector(".app__input--description");
 // Education Page
 const eduForm = document.querySelector(".app__education--form");
 const eduDegreeSelect = document.querySelector(".app__education--select");
+const eduSchoolInput = document.querySelector(".app__education--school");
+const eduDateInput = document.querySelector(".app__education--date");
+const eduDescriptionInput = document.querySelector(
+  ".app__input--edu--description"
+);
 // Page Titles and counts
 const pageTitle = document.querySelector(".app__personal--title");
 const pageNumber = document.querySelector(".app__personal--pagenum");
 // PersonalInfo Validation
+function checkDateVal(input) {
+  if (input.value === "") {
+    return false;
+  } else return true;
+}
 function minTwoSymbolVal(input) {
   if (input.value.length >= 2) {
     return true;
@@ -63,6 +99,9 @@ function validateUploadPicture(img) {
 }
 function fullName(string1, string2) {
   fullNameResume.innerHTML = string1 + " " + string2;
+}
+function fullDate(string1, string2) {
+  resumeExperDate.innerHTML = string1 + "-" + string2;
 }
 nameInput.addEventListener("keyup", function () {
   fullName(nameInput.value, lastNameInput.value);
@@ -140,7 +179,9 @@ picUploadInput.addEventListener("change", function () {
   reader.readAsDataURL(new Blob([file]));
 });
 positionInput.addEventListener("keyup", function () {
+  resumeExperPosition.textContent = positionInput.value;
   if (minTwoSymbolVal(positionInput)) {
+    resumeExperTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
     positionInput.classList.add("app__input--green");
     positionInput.classList.remove("app__input--red");
   } else if (
@@ -172,6 +213,75 @@ employerInput.addEventListener("keyup", function () {
     employerInput.classList.remove("app__input--red");
   }
 });
+experDescription.addEventListener("keyup", function () {
+  resumeExperDescription.textContent = experDescription.value;
+  if (checkDateVal(experDescription)) {
+    experDescription.classList.add("app__input--green");
+    experDescription.classList.remove("app__input--red");
+  } else {
+    experDescription.classList.remove("app__input--green");
+    experDescription.classList.add("app__input--red");
+  }
+});
+eduSchoolInput.addEventListener("keyup", function () {
+  resumeEduSchool.textContent = eduSchoolInput.value;
+  if (minTwoSymbolVal(eduSchoolInput)) {
+    resumeEduTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
+    eduSchoolInput.classList.add("app__input--green");
+    eduSchoolInput.classList.remove("app__input--red");
+  } else if (
+    !minTwoSymbolVal(eduSchoolInput) &&
+    eduSchoolInput.value.length > 0 &&
+    eduSchoolInput.value.length < 2
+  ) {
+    eduSchoolInput.classList.remove("app__input--green");
+    eduSchoolInput.classList.add("app__input--red");
+  } else {
+    eduSchoolInput.classList.remove("app__input--green");
+    eduSchoolInput.classList.remove("app__input--red");
+  }
+});
+eduDescriptionInput.addEventListener("keyup", function () {
+  resumeEduDescription.textContent = eduDescriptionInput.value;
+  if (checkDateVal(eduDescriptionInput)) {
+    eduDescriptionInput.classList.add("app__input--green");
+    eduDescriptionInput.classList.remove("app__input--red");
+  } else {
+    eduDescriptionInput.classList.remove("app__input--green");
+    eduDescriptionInput.classList.add("app__input--red");
+  }
+});
+// Dates events
+experDate1.addEventListener("change", function () {
+  fullDate(experDate1.value, experDate2.value);
+  if (checkDateVal(experDate1)) {
+    experDate1.classList.add("app__input--green");
+    experDate1.classList.remove("app__input--red");
+  } else {
+    experDate1.classList.remove("app__input--green");
+    experDate1.classList.add("app__input--red");
+  }
+});
+experDate2.addEventListener("change", function () {
+  fullDate(experDate1.value, experDate2.value);
+  if (checkDateVal(experDate1)) {
+    experDate2.classList.add("app__input--green");
+    experDate2.classList.remove("app__input--red");
+  } else {
+    experDate2.classList.remove("app__input--green");
+    experDate2.classList.add("app__input--red");
+  }
+});
+eduDateInput.addEventListener("change", function () {
+  resumeEduDate.textContent = eduDateInput.value;
+  if (checkDateVal(eduDateInput)) {
+    eduDateInput.classList.add("app__input--green");
+    eduDateInput.classList.remove("app__input--red");
+  } else {
+    eduDateInput.classList.remove("app__input--green");
+    eduDateInput.classList.add("app__input--red");
+  }
+});
 
 picUploadBtn.addEventListener("click", function (e) {
   e.preventDefault();
@@ -183,6 +293,16 @@ personalAbout.addEventListener("keyup", function () {
     resumeAboutTitle.textContent = "";
   } else {
     resumeAboutTitle.textContent = "ᲩᲔᲛ ᲨᲔᲡᲐᲮᲔᲑ";
+  }
+});
+eduDegreeSelect.addEventListener("change", function () {
+  resumeEduDegree.textContent = eduDegreeSelect.value;
+  if (checkDateVal(eduDegreeSelect)) {
+    eduDegreeSelect.classList.add("app__input--green");
+    eduDegreeSelect.classList.remove("app__input--red");
+  } else {
+    eduDegreeSelect.classList.remove("app__input--green");
+    eduDegreeSelect.classList.add("app__input--red");
   }
 });
 // Button functions
@@ -223,7 +343,7 @@ axios.get("https://resume.redberryinternship.ge/api/degrees").then((resp) => {
   degreeArr.forEach((element) => {
     let degreeOption = document.createElement("option");
     eduDegreeSelect.appendChild(degreeOption);
-    degreeOption.value = element.id;
+    degreeOption.value = element.title;
     degreeOption.innerHTML = element.title;
   });
 });
