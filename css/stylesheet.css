@@ -242,7 +242,7 @@ select::after {
   height: 48px;
 }
 .app__personal--nextbtn {
-  margin-top: 160px;
+  margin-top: 158.7px;
   height: 48px;
   width: 151px;
   font-size: 16px;
@@ -264,7 +264,6 @@ select::after {
   margin: 0 auto;
   margin-top: 77px;
   width: 72.8%;
-  padding-bottom: 65px;
 }
 .app__position--box {
   display: flex;
@@ -335,7 +334,7 @@ select::after {
 .app__end--line {
   border: 1px solid #c1c1c1;
   width: 100%;
-  margin-top: 58px;
+  margin-top: 53px;
 }
 .app__addexp--btn {
   margin-top: 59px;
@@ -350,7 +349,7 @@ select::after {
   font-size: 16px;
   line-height: 20px;
 }
-.app__experience--btn-box {
+.app__experience--btn--box {
   width: 100%;
   margin-top: 115px;
   display: flex;
@@ -384,14 +383,14 @@ select::after {
   letter-spacing: 0.08em;
   cursor: pointer;
 }
-/* Experience Page */
+
+/* Education Page */
 .app__education--form {
-  display: flex;
+  display: none;
   flex-direction: column;
   margin: 0 auto;
   margin-top: 77px;
   width: 72.8%;
-  padding-bottom: 65px;
 }
 .app__school--box {
   display: flex;
@@ -450,8 +449,14 @@ select::after {
   flex-direction: column;
   width: 100%;
 }
+.app__input--edu--description {
+  padding: 13px 16px;
+  height: 179px;
+  width: 100%;
+  resize: none;
+}
 .app__addedu--btn {
-  margin-top: 59px;
+  margin-top: 45px;
   border: none;
   color: #fff;
   width: 289px;
@@ -462,6 +467,39 @@ select::after {
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
+}
+.app__education--btn-box {
+  width: 100%;
+  margin-top: 196.7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.app__education--back--btn {
+  border: none;
+  background: #6b40e3;
+  border-radius: 4px;
+  width: 151px;
+  height: 48px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+.app__education--finish--btn {
+  border: none;
+  background: #6b40e3;
+  border-radius: 4px;
+  width: 151px;
+  height: 48px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
 }
 
 /* Resume generator Page */

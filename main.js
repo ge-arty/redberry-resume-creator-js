@@ -21,6 +21,8 @@ const resumePic = document.querySelector(".app__resume--image");
 // Experience Page
 const experForm = document.querySelector(".app__experience--form");
 const experNextBtn = document.querySelector(".app__experience--next");
+// Education Page
+const eduForm = document.querySelector(".app__education--form");
 // Page Titles and counts
 const pageTitle = document.querySelector(".app__personal--title");
 const pageNumber = document.querySelector(".app__personal--pagenum");
@@ -135,4 +137,5 @@ experNextBtn.addEventListener("click", function (e) {
   experForm.style.display = "none";
   pageTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
   pageNumber.textContent = "3/3";
+  eduForm.style.display = "flex";
 });
