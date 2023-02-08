@@ -42,6 +42,14 @@ select::after {
   border-width: 5px 5px 0 5px;
   border-color: #333 transparent transparent transparent;
 }
+.email-svg {
+  margin-right: 10px;
+  display: none;
+}
+.mobile-svg {
+  margin-right: 10px;
+  display: none;
+}
 .app__input--validation {
   font-family: "Helvetica Neue";
   font-style: normal;
@@ -519,11 +527,13 @@ select::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 48px 75px 0 80px;
+  padding: 48px 75px 16px 80px;
+  border-bottom: 1px solid #c8c8c8;
 }
 .app__resume--personalinfo {
   width: 70%;
   height: 246px;
+  padding-bottom: 16px;
 }
 .app__resume--fullname {
   font-style: normal;
@@ -540,6 +550,8 @@ select::after {
   color: #f93b1d;
 }
 .app__resume--about--text {
+  width: 100%;
+  max-width: 422px;
   margin-top: 15px;
   font-style: normal;
   font-weight: 400;

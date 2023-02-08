@@ -9,6 +9,7 @@ const picUploadBtn = document.querySelector(".app__upload--btn");
 const picUploadInput = document.querySelector(".app__file--input");
 const personalNextBtn = document.querySelector(".app__personal--nextbtn");
 const personalForms = document.querySelector(".app__personal--form");
+const personalAbout = document.querySelector(".app__input--about");
 //
 const nameInput = document.querySelector(".app__personal--name--input");
 const lastNameInput = document.querySelector(".app__personal--lastname--input");
@@ -18,6 +19,12 @@ const mobileInput = document.querySelector(".app__input--mobile");
 const resumePage = document.querySelector(".app__resume--page");
 const fullNameResume = document.querySelector(".app__resume--fullname");
 const resumePic = document.querySelector(".app__resume--image");
+const resumeEmail = document.querySelector(".app__resume--email");
+const resumeMobile = document.querySelector(".app__resume--number");
+const emailSvg = document.querySelector(".email-svg");
+const mobileSvg = document.querySelector(".mobile-svg");
+const resumeAboutTitle = document.querySelector(".app__resume--about");
+const resumeAboutText = document.querySelector(".app__resume--about--text");
 // Experience Page
 const experForm = document.querySelector(".app__experience--form");
 const experNextBtn = document.querySelector(".app__experience--next");
@@ -32,12 +39,17 @@ function validateGeorgian(input) {
   return regExp.test(input);
 }
 function isValidEmail(email) {
-  var emailRegex = /^[a-zA-Z0-9._%+-]+@redberry\.ge$/;
+  let emailRegex = /^[a-zA-Z0-9._%+-]+@redberry\.ge$/;
   return emailRegex.test(email);
 }
 function validateGeorgianMobile(mobile) {
-  var mobileRegex = /^(\+995)\d{9}$/;
+  let mobileRegex = /^(\+995)\d{9}$/;
   return mobileRegex.test(mobile);
+}
+function validateUploadPicture(img) {
+  if (img.src === "") {
+    return false;
+  } else return true;
 }
 function fullName(string1, string2) {
   fullNameResume.innerHTML = string1 + " " + string2;
@@ -76,7 +88,10 @@ lastNameInput.addEventListener("keyup", function () {
   }
 });
 emailInput.addEventListener("keyup", function () {
+  resumeEmail.textContent = emailInput.value;
+  emailSvg.style.display = "block";
   if (emailInput.value.trim() === "") {
+    emailSvg.style.display = "none";
     emailInput.classList.remove("app__input--green");
     emailInput.classList.remove("app__input--red");
   } else if (isValidEmail(emailInput.value)) {
@@ -88,6 +103,8 @@ emailInput.addEventListener("keyup", function () {
   }
 });
 mobileInput.addEventListener("keyup", function () {
+  resumeMobile.textContent = mobileInput.value;
+  mobileSvg.style.display = "block";
   if (validateGeorgianMobile(mobileInput.value)) {
     mobileInput.classList.add("app__input--green");
     mobileInput.classList.remove("app__input--red");
@@ -98,6 +115,7 @@ mobileInput.addEventListener("keyup", function () {
     mobileInput.classList.remove("app__input--green");
     mobileInput.classList.add("app__input--red");
   } else if (mobileInput.value.trim() === "") {
+    mobileSvg.style.display = "none";
     mobileInput.classList.remove("app__input--green");
     mobileInput.classList.remove("app__input--red");
   }
@@ -116,13 +134,28 @@ picUploadBtn.addEventListener("click", function (e) {
   e.preventDefault();
   picUploadInput.click();
 });
+personalAbout.addEventListener("keyup", function () {
+  resumeAboutText.textContent = personalAbout.value;
+  if (personalAbout.value.trim() === "") {
+    resumeAboutTitle.textContent = "";
+  } else {
+    resumeAboutTitle.textContent = "ᲩᲔᲛ ᲨᲔᲡᲐᲮᲔᲑ";
+  }
+});
 // Button functions
 personalNextBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  personalForms.style.display = "none";
-  pageTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
-  pageNumber.textContent = "2/3";
-  experForm.style.display = "block";
+  if (
+    validateGeorgian(nameInput.value, lastNameInput.value) &&
+    validateUploadPicture(resumePic) &&
+    isValidEmail(emailInput.value) &&
+    validateGeorgianMobile(mobileInput.value)
+  ) {
+    personalForms.style.display = "none";
+    pageTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
+    pageNumber.textContent = "2/3";
+    experForm.style.display = "block";
+  }
 });
 homeBtn.addEventListener("click", function () {
   homePage.style.display = "none";
@@ -139,3 +172,4 @@ experNextBtn.addEventListener("click", function (e) {
   pageNumber.textContent = "3/3";
   eduForm.style.display = "flex";
 });
+console.log(resumePic);
