@@ -155,7 +155,7 @@ select::after {
   text-align: Right;
 }
 .app__personal--form {
-  display: flex;
+  display: none;
   flex-direction: column;
   margin: 0 auto;
   margin-top: 77px;
@@ -267,7 +267,7 @@ select::after {
 }
 /* Experience Page */
 .app__experience--form {
-  display: none;
+  display: flex;
   flex-direction: column;
   margin: 0 auto;
   margin-top: 77px;

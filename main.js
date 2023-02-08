@@ -28,12 +28,22 @@ const resumeAboutText = document.querySelector(".app__resume--about--text");
 // Experience Page
 const experForm = document.querySelector(".app__experience--form");
 const experNextBtn = document.querySelector(".app__experience--next");
+const positionInput = document.querySelector(".app__input--position");
+const employerInput = document.querySelector(".app__input--employer");
 // Education Page
 const eduForm = document.querySelector(".app__education--form");
+const eduDegreeSelect = document.querySelector(".app__education--select");
 // Page Titles and counts
 const pageTitle = document.querySelector(".app__personal--title");
 const pageNumber = document.querySelector(".app__personal--pagenum");
 // PersonalInfo Validation
+function minTwoSymbolVal(input) {
+  if (input.value.length >= 2) {
+    return true;
+  } else {
+    return false;
+  }
+}
 function validateGeorgian(input) {
   let regExp = /^[ა-ჰ]+$/;
   return regExp.test(input);
@@ -129,6 +139,39 @@ picUploadInput.addEventListener("change", function () {
   };
   reader.readAsDataURL(new Blob([file]));
 });
+positionInput.addEventListener("keyup", function () {
+  if (minTwoSymbolVal(positionInput)) {
+    positionInput.classList.add("app__input--green");
+    positionInput.classList.remove("app__input--red");
+  } else if (
+    !minTwoSymbolVal(positionInput) &&
+    positionInput.value.length > 0 &&
+    positionInput.value.length < 2
+  ) {
+    positionInput.classList.remove("app__input--green");
+    positionInput.classList.add("app__input--red");
+  } else {
+    positionInput.classList.remove("app__input--green");
+    positionInput.classList.remove("app__input--red");
+  }
+});
+
+employerInput.addEventListener("keyup", function () {
+  if (minTwoSymbolVal(employerInput)) {
+    employerInput.classList.add("app__input--green");
+    employerInput.classList.remove("app__input--red");
+  } else if (
+    !minTwoSymbolVal(employerInput) &&
+    employerInput.value.length > 0 &&
+    employerInput.value.length < 2
+  ) {
+    employerInput.classList.remove("app__input--green");
+    employerInput.classList.add("app__input--red");
+  } else {
+    employerInput.classList.remove("app__input--green");
+    employerInput.classList.remove("app__input--red");
+  }
+});
 
 picUploadBtn.addEventListener("click", function (e) {
   e.preventDefault();
@@ -173,3 +216,27 @@ experNextBtn.addEventListener("click", function (e) {
   eduForm.style.display = "flex";
 });
 console.log(resumePic);
+
+// Axios API Get
+axios.get("https://resume.redberryinternship.ge/api/degrees").then((resp) => {
+  const degreeArr = resp.data;
+  degreeArr.forEach((element) => {
+    let degreeOption = document.createElement("option");
+    eduDegreeSelect.appendChild(degreeOption);
+    degreeOption.value = element.id;
+    degreeOption.innerHTML = element.title;
+  });
+});
+
+// axios
+// .get("https://covid-api.mmediagroup.fr/v1/cases")
+// .then(function (response) {
+//   let infoArray = Object.entries(response.data);
+//   //  --------ვამატებთ სელექტში ქვეყნებს
+//   let countryArr = Object.keys(response.data);
+//   countryArr.forEach((element) => {
+//     let countryOption = document.createElement("option");
+//     countrySelect.appendChild(countryOption);
+//     countryOption.value = element;
+//     countryOption.innerHTML = element;
+//   });
