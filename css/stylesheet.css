@@ -399,8 +399,10 @@ select::after {
   display: none;
   flex-direction: column;
   margin: 0 auto;
-  margin-top: 77px;
   width: 72.8%;
+}
+.app__education--form > div {
+  margin-top: 77px;
 }
 .app__school--box {
   display: flex;

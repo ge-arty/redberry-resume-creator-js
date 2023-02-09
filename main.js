@@ -1,5 +1,10 @@
 addNewPositionEducation();
-addNewPositionEducation();
+const eduCreateFormBtn = document.querySelector(".app__addedu--btn");
+eduCreateFormBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  addNewPositionEducation();
+});
+
 addNewPositionExperience();
 const experCreateFormBtn = document.querySelector(".app__addexp--btn");
 experCreateFormBtn.addEventListener("click", function (e) {
@@ -10,16 +15,16 @@ experCreateFormBtn.addEventListener("click", function (e) {
 // Start page variablesa--------------------
 const homeBtn = document.querySelector(".app__start--btn");
 const homePage = document.querySelector(".app__start--page");
+
 // Personal Page Variables---------
-const homeBackBtn = document.querySelector(".app__personal--backbtn");
+const backHomePageBtn = document.querySelector(".app__personal--backbtn");
 const appSection = document.querySelector(".app__working--section");
 const personalInfoPage = document.querySelector(".app__personal--page");
 const picUploadBtn = document.querySelector(".app__upload--btn");
 const picUploadInput = document.querySelector(".app__file--input");
 const personalNextBtn = document.querySelector(".app__personal--nextbtn");
-const personalForms = document.querySelector(".app__personal--form");
+const personalForm = document.querySelector(".app__personal--form");
 const personalAbout = document.querySelector(".app__input--about");
-//-------------------------------------------------
 const nameInput = document.querySelector(".app__personal--name--input");
 const lastNameInput = document.querySelector(".app__personal--lastname--input");
 const emailInput = document.querySelector(".app__input--email");
@@ -39,15 +44,20 @@ const resumeExperTitle = document.querySelector(
   ".app__resume--experience--title"
 );
 const resumeEduTitle = document.querySelector(".app__resume--education--title");
+
 // Experience Page
 const experForm = document.querySelector(".app__experience--form");
 const experNextBtn = document.querySelector(".app__experience--next");
 const employerInput = document.querySelector(".app__input--employer");
-// Education Page
+
+// Education Page-------
 const eduForm = document.querySelector(".app__education--form");
-// Page Titles and counts
+
+// Page Titles and counts----
 const pageTitle = document.querySelector(".app__personal--title");
 const pageNumber = document.querySelector(".app__personal--pagenum");
+personalFunc();
+
 // PersonalInfo Validation
 function checkDateVal(input) {
   if (input.value === "") {
@@ -81,95 +91,98 @@ function validateUploadPicture(img) {
 function fullName(string1, string2) {
   fullNameResume.innerHTML = string1 + " " + string2;
 }
-
-nameInput.addEventListener("keyup", function () {
-  fullName(nameInput.value, lastNameInput.value);
-  fullNameResume.innerHTML = nameInput.value;
-  if (validateGeorgian(nameInput.value) && nameInput.value.length >= 2) {
-    nameInput.classList.add("app__input--green");
-    nameInput.classList.remove("app__input--red");
-  } else if (!validateGeorgian(nameInput.value) && nameInput.value.length > 0) {
-    nameInput.classList.add("app__input--red");
-    nameInput.classList.remove("app__input--green");
-  } else if (nameInput.value.trim() === "") {
-    nameInput.classList.remove("app__input--green");
-    nameInput.classList.remove("app__input--red");
-  }
-});
-lastNameInput.addEventListener("keyup", function () {
-  fullName(nameInput.value, lastNameInput.value);
-  if (
-    validateGeorgian(lastNameInput.value) &&
-    lastNameInput.value.length >= 2
-  ) {
-    lastNameInput.classList.add("app__input--green");
-    lastNameInput.classList.remove("app__input--red");
-  } else if (
-    !validateGeorgian(lastNameInput.value) &&
-    lastNameInput.value.length > 0
-  ) {
-    lastNameInput.classList.add("app__input--red");
-    lastNameInput.classList.remove("app__input--green");
-  } else if (lastNameInput.value.trim() === "") {
-    lastNameInput.classList.remove("app__input--green");
-    lastNameInput.classList.remove("app__input--red");
-  }
-});
-emailInput.addEventListener("keyup", function () {
-  resumeEmail.textContent = emailInput.value;
-  emailSvg.style.display = "block";
-  if (emailInput.value.trim() === "") {
-    emailSvg.style.display = "none";
-    emailInput.classList.remove("app__input--green");
-    emailInput.classList.remove("app__input--red");
-  } else if (isValidEmail(emailInput.value)) {
-    emailInput.classList.add("app__input--green");
-    emailInput.classList.remove("app__input--red");
-  } else {
-    emailInput.classList.remove("app__input--green");
-    emailInput.classList.add("app__input--red");
-  }
-});
-mobileInput.addEventListener("keyup", function () {
-  resumeMobile.textContent = mobileInput.value;
-  mobileSvg.style.display = "block";
-  if (validateGeorgianMobile(mobileInput.value)) {
-    mobileInput.classList.add("app__input--green");
-    mobileInput.classList.remove("app__input--red");
-  } else if (
-    !validateGeorgianMobile(mobileInput.value) &&
-    mobileInput.value.length > 0
-  ) {
-    mobileInput.classList.remove("app__input--green");
-    mobileInput.classList.add("app__input--red");
-  } else if (mobileInput.value.trim() === "") {
-    mobileSvg.style.display = "none";
-    mobileInput.classList.remove("app__input--green");
-    mobileInput.classList.remove("app__input--red");
-  }
-});
-picUploadInput.addEventListener("change", function () {
-  const file = this.files[0];
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    resumePic.src = e.target.result;
-    resumePic.style.display = "block";
-  };
-  reader.readAsDataURL(new Blob([file]));
-});
-picUploadBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  picUploadInput.click();
-});
-personalAbout.addEventListener("keyup", function () {
-  resumeAboutText.textContent = personalAbout.value;
-  if (personalAbout.value.trim() === "") {
-    resumeAboutTitle.textContent = "";
-  } else {
-    resumeAboutTitle.textContent = "ᲩᲔᲛ ᲨᲔᲡᲐᲮᲔᲑ";
-  }
-});
-// Button functions
+function personalFunc() {
+  nameInput.addEventListener("keyup", function () {
+    fullName(nameInput.value, lastNameInput.value);
+    fullNameResume.innerHTML = nameInput.value;
+    if (validateGeorgian(nameInput.value) && nameInput.value.length >= 2) {
+      nameInput.classList.add("app__input--green");
+      nameInput.classList.remove("app__input--red");
+    } else if (
+      !validateGeorgian(nameInput.value) &&
+      nameInput.value.length > 0
+    ) {
+      nameInput.classList.add("app__input--red");
+      nameInput.classList.remove("app__input--green");
+    } else if (nameInput.value.trim() === "") {
+      nameInput.classList.remove("app__input--green");
+      nameInput.classList.remove("app__input--red");
+    }
+  });
+  lastNameInput.addEventListener("keyup", function () {
+    fullName(nameInput.value, lastNameInput.value);
+    if (
+      validateGeorgian(lastNameInput.value) &&
+      lastNameInput.value.length >= 2
+    ) {
+      lastNameInput.classList.add("app__input--green");
+      lastNameInput.classList.remove("app__input--red");
+    } else if (
+      !validateGeorgian(lastNameInput.value) &&
+      lastNameInput.value.length > 0
+    ) {
+      lastNameInput.classList.add("app__input--red");
+      lastNameInput.classList.remove("app__input--green");
+    } else if (lastNameInput.value.trim() === "") {
+      lastNameInput.classList.remove("app__input--green");
+      lastNameInput.classList.remove("app__input--red");
+    }
+  });
+  emailInput.addEventListener("keyup", function () {
+    resumeEmail.textContent = emailInput.value;
+    emailSvg.style.display = "block";
+    if (emailInput.value.trim() === "") {
+      emailSvg.style.display = "none";
+      emailInput.classList.remove("app__input--green");
+      emailInput.classList.remove("app__input--red");
+    } else if (isValidEmail(emailInput.value)) {
+      emailInput.classList.add("app__input--green");
+      emailInput.classList.remove("app__input--red");
+    } else {
+      emailInput.classList.remove("app__input--green");
+      emailInput.classList.add("app__input--red");
+    }
+  });
+  mobileInput.addEventListener("keyup", function () {
+    resumeMobile.textContent = mobileInput.value;
+    mobileSvg.style.display = "block";
+    if (validateGeorgianMobile(mobileInput.value)) {
+      mobileInput.classList.add("app__input--green");
+      mobileInput.classList.remove("app__input--red");
+    } else if (
+      !validateGeorgianMobile(mobileInput.value) &&
+      mobileInput.value.length > 0
+    ) {
+      mobileInput.classList.remove("app__input--green");
+      mobileInput.classList.add("app__input--red");
+    } else if (mobileInput.value.trim() === "") {
+      mobileSvg.style.display = "none";
+      mobileInput.classList.remove("app__input--green");
+      mobileInput.classList.remove("app__input--red");
+    }
+  });
+  picUploadInput.addEventListener("change", function () {
+    const file = this.files[0];
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      resumePic.src = e.target.result;
+      resumePic.style.display = "block";
+    };
+    reader.readAsDataURL(new Blob([file]));
+  });
+  picUploadBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    picUploadInput.click();
+  });
+  personalAbout.addEventListener("keyup", function () {
+    resumeAboutText.textContent = personalAbout.value;
+    if (personalAbout.value.trim() === "") {
+      resumeAboutTitle.textContent = "";
+    } else {
+      resumeAboutTitle.textContent = "ᲩᲔᲛ ᲨᲔᲡᲐᲮᲔᲑ";
+    }
+  });
+}
 personalNextBtn.addEventListener("click", function (e) {
   e.preventDefault();
   if (
@@ -179,7 +192,7 @@ personalNextBtn.addEventListener("click", function (e) {
     validateGeorgianMobile(mobileInput.value)
   ) {
     resumePersonalBlock.style.borderBottom = "1px solid #c8c8c8";
-    personalForms.style.display = "none";
+    personalForm.style.display = "none";
     pageTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
     pageNumber.textContent = "2/3";
     experForm.style.display = "block";
@@ -188,10 +201,16 @@ personalNextBtn.addEventListener("click", function (e) {
 homeBtn.addEventListener("click", function () {
   homePage.style.display = "none";
   appSection.style.display = "flex";
+  personalForm.style.display = "flex";
 });
-homeBackBtn.addEventListener("click", function () {
+backHomePageBtn.addEventListener("click", function () {
   homePage.style.display = "block";
+  personalForm.style.display = "none";
+  eduForm.style.display = "none";
+  experForm.style.display = "none";
   appSection.style.display = "none";
+  pageTitle.textContent = "ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ";
+  pageNumber.textContent = "1/3";
 });
 // ------------------------------------------------------------------------------------
 
@@ -410,6 +429,7 @@ function addNewPositionEducation() {
   });
 }
 
+// insertFunc
 function insertAfter(referenceNode, newNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
