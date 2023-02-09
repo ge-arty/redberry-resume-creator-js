@@ -72,28 +72,7 @@
           </div>
         </form>
         <form class="app__education--form">
-          <div class="app__school--box">
-            <label for="school-name">სასწავლებელი</label>
-            <input class="app__education--school" placeholder="სასწავლებელი" type="text">
-            <p class="app__input--validation">მინიმუმ 2 სიმბოლო</p>
-          </div>
-          <div class="app__school--graduation--box">
-            <div class="app__degree--box">
-              <label for="degree">ხარისხი</label>
-              <select class="app__education--select" aria-placeholder="აირჩიეთ ხარისხი">
-                <option value="" disabled selected hidden>აირჩიეთ ხარისხი</option>
-              </select>
-            </div>
-            <div class="app__education--date--box">
-              <label for="date">დამთავრების რიცხვი</label>
-              <input class="app__education--date" type="date">
-            </div>
-          </div>
-          <div class="app__education--description--box">
-            <label for="description">აღწერა</label>
-            <textarea class="app__input--edu--description" cols="30" rows="10"></textarea>
-          </div>
-          <div class="app__end--line"></div>
+         <!--  -->
           <button class="app__addedu--btn">სხვა სასწავლებლის დამატება</button>
           <div class="app__education--btn-box">
             <button class="app__education--back--btn">ᲣᲙᲐᲜ</button>
@@ -127,16 +106,46 @@
         </div>
         <img class="app__resume--logo" src="./img/LOGO-12 1.png" alt="resume-logo">
         <!-- experience box -->
-        <div class="app__resume--education--box">
-          <h2 class="app__resume--education--title"></h2>
-          <p class="app__resume--education--school"></p>
-          <span class="app__resume--education--degree"></span>
-          <p class="app__resume--education--date"></p>
-          <p class="app__resume--education--description"></p>
-        </div>
+        <!-- education box -->
       </section>
     </section>
     </div>
+
+    <div id="position-template-2" style="display:none;">
+      <div>          <div class="app__school--box">
+        <label for="school-name">სასწავლებელი</label>
+        <input class="app__education--school" placeholder="სასწავლებელი" type="text">
+        <p class="app__input--validation">მინიმუმ 2 სიმბოლო</p>
+      </div>
+      <div class="app__school--graduation--box">
+        <div class="app__degree--box">
+          <label for="degree">ხარისხი</label>
+          <select class="app__education--select" aria-placeholder="აირჩიეთ ხარისხი">
+            <option value="" disabled selected hidden>აირჩიეთ ხარისხი</option>
+          </select>
+        </div>
+        <div class="app__education--date--box">
+          <label for="date">დამთავრების რიცხვი</label>
+          <input class="app__education--date" type="date">
+        </div>
+      </div>
+      <div class="app__education--description--box">
+        <label for="description">აღწერა</label>
+        <textarea class="app__input--edu--description" cols="30" rows="10"></textarea>
+      </div>
+      <div class="app__end--line"></div></div>
+    </div>
+
+    <div id="education-box-template" style="display:none;">
+      <div class="app__resume--education--box">
+        <h2 class="app__resume--education--title"></h2>
+        <p class="app__resume--education--school"></p>
+        <span class="app__resume--education--degree"></span>
+        <p class="app__resume--education--date"></p>
+        <p class="app__resume--education--description"></p>
+      </div>
+    </div>
+
 
     <div id="position-template" style="display: none;">
       <div>

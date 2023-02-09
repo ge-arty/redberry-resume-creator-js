@@ -1,14 +1,16 @@
-addNewPosition();
+addNewPositionEducation();
+addNewPositionEducation();
+addNewPositionExperience();
 const experCreateFormBtn = document.querySelector(".app__addexp--btn");
 experCreateFormBtn.addEventListener("click", function (e) {
   e.preventDefault();
-  addNewPosition();
+  addNewPositionExperience();
 });
 
-// Start page variablesa
+// Start page variablesa--------------------
 const homeBtn = document.querySelector(".app__start--btn");
 const homePage = document.querySelector(".app__start--page");
-// Personal Page Variables
+// Personal Page Variables---------
 const homeBackBtn = document.querySelector(".app__personal--backbtn");
 const appSection = document.querySelector(".app__working--section");
 const personalInfoPage = document.querySelector(".app__personal--page");
@@ -17,7 +19,7 @@ const picUploadInput = document.querySelector(".app__file--input");
 const personalNextBtn = document.querySelector(".app__personal--nextbtn");
 const personalForms = document.querySelector(".app__personal--form");
 const personalAbout = document.querySelector(".app__input--about");
-//
+//-------------------------------------------------
 const nameInput = document.querySelector(".app__personal--name--input");
 const lastNameInput = document.querySelector(".app__personal--lastname--input");
 const emailInput = document.querySelector(".app__input--email");
@@ -36,35 +38,13 @@ const resumeAboutText = document.querySelector(".app__resume--about--text");
 const resumeExperTitle = document.querySelector(
   ".app__resume--experience--title"
 );
-// const resumeExperPosition = document.querySelector(
-//   ".app__resume--experience--position"
-// );
-
 const resumeEduTitle = document.querySelector(".app__resume--education--title");
-const resumeEduSchool = document.querySelector(
-  ".app__resume--education--school"
-);
-const resumeEduDegree = document.querySelector(
-  ".app__resume--education--degree"
-);
-const resumeEduDate = document.querySelector(".app__resume--education--date");
-const resumeEduDescription = document.querySelector(
-  ".app__resume--education--description"
-);
 // Experience Page
 const experForm = document.querySelector(".app__experience--form");
 const experNextBtn = document.querySelector(".app__experience--next");
-// const positionInputs = document.querySelectorAll(".app__input--position");
 const employerInput = document.querySelector(".app__input--employer");
-
 // Education Page
 const eduForm = document.querySelector(".app__education--form");
-const eduDegreeSelect = document.querySelector(".app__education--select");
-const eduSchoolInput = document.querySelector(".app__education--school");
-const eduDateInput = document.querySelector(".app__education--date");
-const eduDescriptionInput = document.querySelector(
-  ".app__input--edu--description"
-);
 // Page Titles and counts
 const pageTitle = document.querySelector(".app__personal--title");
 const pageNumber = document.querySelector(".app__personal--pagenum");
@@ -177,47 +157,6 @@ picUploadInput.addEventListener("change", function () {
   };
   reader.readAsDataURL(new Blob([file]));
 });
-// -----------------------EDUCATION--------------------------------------------------
-eduSchoolInput.addEventListener("keyup", function () {
-  resumeEduSchool.textContent = eduSchoolInput.value;
-  if (minTwoSymbolVal(eduSchoolInput)) {
-    resumeEduTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
-    eduSchoolInput.classList.add("app__input--green");
-    eduSchoolInput.classList.remove("app__input--red");
-  } else if (
-    !minTwoSymbolVal(eduSchoolInput) &&
-    eduSchoolInput.value.length > 0 &&
-    eduSchoolInput.value.length < 2
-  ) {
-    eduSchoolInput.classList.remove("app__input--green");
-    eduSchoolInput.classList.add("app__input--red");
-  } else {
-    eduSchoolInput.classList.remove("app__input--green");
-    eduSchoolInput.classList.remove("app__input--red");
-  }
-});
-eduDescriptionInput.addEventListener("keyup", function () {
-  resumeEduDescription.textContent = eduDescriptionInput.value;
-  if (checkDateVal(eduDescriptionInput)) {
-    eduDescriptionInput.classList.add("app__input--green");
-    eduDescriptionInput.classList.remove("app__input--red");
-  } else {
-    eduDescriptionInput.classList.remove("app__input--green");
-    eduDescriptionInput.classList.add("app__input--red");
-  }
-});
-// Dates events
-eduDateInput.addEventListener("change", function () {
-  resumeEduDate.textContent = eduDateInput.value;
-  if (checkDateVal(eduDateInput)) {
-    eduDateInput.classList.add("app__input--green");
-    eduDateInput.classList.remove("app__input--red");
-  } else {
-    eduDateInput.classList.remove("app__input--green");
-    eduDateInput.classList.add("app__input--red");
-  }
-});
-
 picUploadBtn.addEventListener("click", function (e) {
   e.preventDefault();
   picUploadInput.click();
@@ -228,16 +167,6 @@ personalAbout.addEventListener("keyup", function () {
     resumeAboutTitle.textContent = "";
   } else {
     resumeAboutTitle.textContent = "ᲩᲔᲛ ᲨᲔᲡᲐᲮᲔᲑ";
-  }
-});
-eduDegreeSelect.addEventListener("change", function () {
-  resumeEduDegree.textContent = eduDegreeSelect.value;
-  if (checkDateVal(eduDegreeSelect)) {
-    eduDegreeSelect.classList.add("app__input--green");
-    eduDegreeSelect.classList.remove("app__input--red");
-  } else {
-    eduDegreeSelect.classList.remove("app__input--green");
-    eduDegreeSelect.classList.add("app__input--red");
   }
 });
 // Button functions
@@ -264,27 +193,10 @@ homeBackBtn.addEventListener("click", function () {
   homePage.style.display = "block";
   appSection.style.display = "none";
 });
-experNextBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  experForm.style.display = "none";
-  pageTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
-  pageNumber.textContent = "3/3";
-  eduForm.style.display = "flex";
-});
-
-// Axios API Get
-axios.get("https://resume.redberryinternship.ge/api/degrees").then((resp) => {
-  const degreeArr = resp.data;
-  degreeArr.forEach((element) => {
-    let degreeOption = document.createElement("option");
-    eduDegreeSelect.appendChild(degreeOption);
-    degreeOption.value = element.title;
-    degreeOption.innerHTML = element.title;
-  });
-});
+// ------------------------------------------------------------------------------------
 
 // Experience Form Func
-function addNewPosition() {
+function addNewPositionExperience() {
   const positionTemplate = document
     .getElementById("position-template")
     .children[0].cloneNode(true);
@@ -386,6 +298,114 @@ function addNewPosition() {
     } else {
       experDescription.classList.remove("app__input--green");
       experDescription.classList.add("app__input--red");
+    }
+  });
+}
+experNextBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  experForm.style.display = "none";
+  pageTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
+  pageNumber.textContent = "3/3";
+  eduForm.style.display = "flex";
+});
+
+// Education Form Func
+function addNewPositionEducation() {
+  const positionTemplateSecond = document
+    .getElementById("position-template-2")
+    .children[0].cloneNode(true);
+  const educationTemplate = document
+    .getElementById("education-box-template")
+    .children[0].cloneNode(true);
+  // Insert into form
+  document
+    .getElementsByClassName("app__education--form")[0]
+    .prepend(positionTemplateSecond);
+  // Insert into generated CV
+  insertAfter(
+    document.getElementsByClassName("app__resume--logo")[0],
+    educationTemplate
+  );
+  const eduSchoolInput = positionTemplateSecond.querySelector(
+    ".app__education--school"
+  );
+  eduSchoolInput.addEventListener("keyup", function () {
+    const resumeEduSchool = educationTemplate.querySelector(
+      ".app__resume--education--school"
+    );
+    resumeEduSchool.textContent = eduSchoolInput.value;
+    if (minTwoSymbolVal(eduSchoolInput)) {
+      resumeEduTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
+      eduSchoolInput.classList.add("app__input--green");
+      eduSchoolInput.classList.remove("app__input--red");
+    } else if (
+      !minTwoSymbolVal(eduSchoolInput) &&
+      eduSchoolInput.value.length > 0 &&
+      eduSchoolInput.value.length < 2
+    ) {
+      eduSchoolInput.classList.remove("app__input--green");
+      eduSchoolInput.classList.add("app__input--red");
+    } else {
+      eduSchoolInput.classList.remove("app__input--green");
+      eduSchoolInput.classList.remove("app__input--red");
+    }
+  });
+  const eduDegreeSelect = positionTemplateSecond.querySelector(
+    ".app__education--select"
+  );
+  // Axios API Get
+  axios.get("https://resume.redberryinternship.ge/api/degrees").then((resp) => {
+    const degreeArr = resp.data;
+    degreeArr.forEach((element) => {
+      let degreeOption = document.createElement("option");
+      eduDegreeSelect.appendChild(degreeOption);
+      degreeOption.value = element.title;
+      degreeOption.innerHTML = element.title;
+    });
+  });
+  eduDegreeSelect.addEventListener("change", function () {
+    const resumeEduDegree = educationTemplate.querySelector(
+      ".app__resume--education--degree"
+    );
+    resumeEduDegree.textContent = eduDegreeSelect.value;
+    if (checkDateVal(eduDegreeSelect)) {
+      eduDegreeSelect.classList.add("app__input--green");
+      eduDegreeSelect.classList.remove("app__input--red");
+    } else {
+      eduDegreeSelect.classList.remove("app__input--green");
+      eduDegreeSelect.classList.add("app__input--red");
+    }
+  });
+  const eduDateInput = positionTemplateSecond.querySelector(
+    ".app__education--date"
+  );
+  eduDateInput.addEventListener("change", function () {
+    const resumeEduDate = educationTemplate.querySelector(
+      ".app__resume--education--date"
+    );
+    resumeEduDate.textContent = eduDateInput.value;
+    if (checkDateVal(eduDateInput)) {
+      eduDateInput.classList.add("app__input--green");
+      eduDateInput.classList.remove("app__input--red");
+    } else {
+      eduDateInput.classList.remove("app__input--green");
+      eduDateInput.classList.add("app__input--red");
+    }
+  });
+  const eduDescriptionInput = positionTemplateSecond.querySelector(
+    ".app__input--edu--description"
+  );
+  eduDescriptionInput.addEventListener("keyup", function () {
+    const resumeEduDescription = educationTemplate.querySelector(
+      ".app__resume--education--description"
+    );
+    resumeEduDescription.textContent = eduDescriptionInput.value;
+    if (checkDateVal(eduDescriptionInput)) {
+      eduDescriptionInput.classList.add("app__input--green");
+      eduDescriptionInput.classList.remove("app__input--red");
+    } else {
+      eduDescriptionInput.classList.remove("app__input--green");
+      eduDescriptionInput.classList.add("app__input--red");
     }
   });
 }
