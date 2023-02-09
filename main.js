@@ -1,3 +1,5 @@
+addNewPosition();
+
 // Start page variablesa
 const homeBtn = document.querySelector(".app__start--btn");
 const homePage = document.querySelector(".app__start--page");
@@ -28,9 +30,9 @@ const resumeAboutText = document.querySelector(".app__resume--about--text");
 const resumeExperTitle = document.querySelector(
   ".app__resume--experience--title"
 );
-const resumeExperPosition = document.querySelector(
-  ".app__resume--experience--position"
-);
+// const resumeExperPosition = document.querySelector(
+//   ".app__resume--experience--position"
+// );
 const resumeExperDate = document.querySelector(
   ".app__resume--experience--date"
 );
@@ -51,7 +53,7 @@ const resumeEduDescription = document.querySelector(
 // Experience Page
 const experForm = document.querySelector(".app__experience--form");
 const experNextBtn = document.querySelector(".app__experience--next");
-const positionInput = document.querySelector(".app__input--position");
+// const positionInputs = document.querySelectorAll(".app__input--position");
 const employerInput = document.querySelector(".app__input--employer");
 const experDate1 = document.querySelector(".app__date--input1");
 const experDate2 = document.querySelector(".app__date--input2");
@@ -178,24 +180,9 @@ picUploadInput.addEventListener("change", function () {
   };
   reader.readAsDataURL(new Blob([file]));
 });
-positionInput.addEventListener("keyup", function () {
-  resumeExperPosition.textContent = positionInput.value;
-  if (minTwoSymbolVal(positionInput)) {
-    resumeExperTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
-    positionInput.classList.add("app__input--green");
-    positionInput.classList.remove("app__input--red");
-  } else if (
-    !minTwoSymbolVal(positionInput) &&
-    positionInput.value.length > 0 &&
-    positionInput.value.length < 2
-  ) {
-    positionInput.classList.remove("app__input--green");
-    positionInput.classList.add("app__input--red");
-  } else {
-    positionInput.classList.remove("app__input--green");
-    positionInput.classList.remove("app__input--red");
-  }
-});
+// positionInputs.forEach((positionInput) =>
+
+// );
 
 employerInput.addEventListener("keyup", function () {
   if (minTwoSymbolVal(employerInput)) {
@@ -348,15 +335,46 @@ axios.get("https://resume.redberryinternship.ge/api/degrees").then((resp) => {
   });
 });
 
-// axios
-// .get("https://covid-api.mmediagroup.fr/v1/cases")
-// .then(function (response) {
-//   let infoArray = Object.entries(response.data);
-//   //  --------ვამატებთ სელექტში ქვეყნებს
-//   let countryArr = Object.keys(response.data);
-//   countryArr.forEach((element) => {
-//     let countryOption = document.createElement("option");
-//     countrySelect.appendChild(countryOption);
-//     countryOption.value = element;
-//     countryOption.innerHTML = element;
-//   });
+function addNewPosition() {
+  const positionTemplate = document
+    .getElementById("position-template")
+    .children[0].cloneNode(true);
+  const experienceTemplate = document
+    .getElementById("experience-box-template")
+    .children[0].cloneNode(true);
+  // Insert into form
+  document
+    .getElementsByClassName("app__experience--form")[0]
+    .prepend(positionTemplate);
+  // Insert into generated CV
+  insertAfter(
+    document.getElementsByClassName("app__resume--logo")[0],
+    experienceTemplate
+  );
+  const positionInput = positionTemplate.querySelector(".app__input--position");
+  positionInput.addEventListener("keyup", function () {
+    const resumeExperPosition = experienceTemplate.querySelector(
+      ".app__resume--experience--position"
+    );
+    resumeExperPosition.textContent = positionInput.value;
+    if (minTwoSymbolVal(positionInput)) {
+      resumeExperTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
+      positionInput.classList.add("app__input--green");
+      positionInput.classList.remove("app__input--red");
+    } else if (
+      !minTwoSymbolVal(positionInput) &&
+      positionInput.value.length > 0 &&
+      positionInput.value.length < 2
+    ) {
+      positionInput.classList.remove("app__input--green");
+      positionInput.classList.add("app__input--red");
+    } else {
+      positionInput.classList.remove("app__input--green");
+      positionInput.classList.remove("app__input--red");
+    }
+  });
+}
+
+function insertAfter(referenceNode, newNode) {
+  referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}

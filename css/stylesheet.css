@@ -267,7 +267,7 @@ select::after {
 }
 /* Experience Page */
 .app__experience--form {
-  display: flex;
+  display: none;
   flex-direction: column;
   margin: 0 auto;
   margin-top: 77px;
@@ -343,6 +343,7 @@ select::after {
   border: 1px solid #c1c1c1;
   width: 100%;
   margin-top: 53px;
+  margin-bottom: 50px;
 }
 .app__addexp--btn {
   margin-top: 59px;

@@ -64,31 +64,7 @@
           
         </form>
         <form class="app__experience--form">
-          <div class="app__position--box">
-            <label for="position">თანამდებობა</label>
-            <input class="app__input--position" placeholder="დეველოპერი, დიზაინერი, ა.შ." type="text">
-            <p class="app__input--validation">მინიმუმ 2 სიმბოლო</p>
-          </div>
-          <div class="app__employer--box">
-            <label for="employer">დამსაქმებელი</label>
-            <input class="app__input--employer" placeholder="დამსაქმებელი" type="text">
-            <p class="app__input--validation">მინიმუმ 2 სიმბოლო</p>
-          </div>
-          <div class="app__date--box">
-            <div>
-              <label for="first-date">დაწყების რიცხვი</label>
-              <input value="" placeholder="mm / dd / yyyy" class="app__date--input1" type="date">
-            </div>
-            <div>
-              <label for="second-date">დამთავრების რიცხვი</label>
-              <input  placeholder="mm / dd / yyyy" class="app__date--input2"  type="date">
-            </div>
-          </div>
-          <div class="app__description--box">
-            <label for="description">აღწერა</label>
-            <textarea placeholder="როლი თანამდებობაზე და ზოგადი აღწერა" class="app__input--description" cols="50" rows="10"></textarea>
-          </div>
-          <div class="app__end--line"></div>
+          <!-- -->
           <button class="app__addexp--btn">მეტი გამოცდილების დამატება</button>
           <div class="app__experience--btn--box">
             <button class="app__experience--back">ᲣᲙᲐᲜ</button>
@@ -150,12 +126,7 @@
           </div>     
         </div>
         <img class="app__resume--logo" src="./img/LOGO-12 1.png" alt="resume-logo">
-        <div class="app__resume--experience--box">        
-          <h2 class="app__resume--experience--title"></h2>
-          <p class="app__resume--experience--position"></p>
-          <p class="app__resume--experience--date"></p>
-          <p class="app__resume--experience--description"></p>
-        </div>
+        <!-- experience box -->
         <div class="app__resume--education--box">
           <h2 class="app__resume--education--title"></h2>
           <p class="app__resume--education--school"></p>
@@ -166,7 +137,47 @@
       </section>
     </section>
     </div>
+
+    <div id="position-template" style="display: none;">
+      <div>
+        <div class="app__position--box">
+          <label for="position">თანამდებობა</label>
+          <input class="app__input--position" placeholder="დეველოპერი, დიზაინერი, ა.შ." type="text">
+          <p class="app__input--validation">მინიმუმ 2 სიმბოლო</p>
+        </div>
+        <div class="app__employer--box">
+          <label for="employer">დამსაქმებელი</label>
+          <input class="app__input--employer" placeholder="დამსაქმებელი" type="text">
+          <p class="app__input--validation">მინიმუმ 2 სიმბოლო</p>
+        </div>
+        <div class="app__date--box">
+          <div>
+            <label for="first-date">დაწყების რიცხვი</label>
+            <input value="" placeholder="mm / dd / yyyy" class="app__date--input1" type="date">
+          </div>
+          <div>
+            <label for="second-date">დამთავრების რიცხვი</label>
+            <input  placeholder="mm / dd / yyyy" class="app__date--input2"  type="date">
+          </div>
+        </div>
+        <div class="app__description--box">
+          <label for="description">აღწერა</label>
+          <textarea placeholder="როლი თანამდებობაზე და ზოგადი აღწერა" class="app__input--description" cols="50" rows="10"></textarea>
+        </div>
+        <div class="app__end--line"></div>
+      </div>
+    </div>
+
+    <div id="experience-box-template" style="display:none;">
+        <div class="app__resume--experience--box">
+          <h2 class="app__resume--experience--title"></h2>
+          <p class="app__resume--experience--position"></p>
+          <p class="app__resume--experience--date"></p>
+          <p class="app__resume--experience--description"></p>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./main.js"></script> 
+    
   </body>
 </html>
