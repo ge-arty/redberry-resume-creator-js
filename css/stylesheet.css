@@ -270,8 +270,10 @@ select::after {
   display: none;
   flex-direction: column;
   margin: 0 auto;
-  margin-top: 77px;
   width: 72.8%;
+}
+.app__experience--form > div {
+  margin-top: 77px;
 }
 .app__position--box {
   display: flex;
@@ -343,7 +345,6 @@ select::after {
   border: 1px solid #c1c1c1;
   width: 100%;
   margin-top: 53px;
-  margin-bottom: 50px;
 }
 .app__addexp--btn {
   margin-top: 59px;
@@ -529,7 +530,6 @@ select::after {
   justify-content: space-between;
   align-items: center;
   padding: 48px 75px 16px 80px;
-  border-bottom: 1px solid #c8c8c8;
 }
 .app__resume--personalinfo {
   width: 70%;
@@ -591,12 +591,74 @@ select::after {
   padding: 24px 80px 19px 80px;
   border-bottom: 1px solid #c8c8c8;
 }
+.app__resume--experience--title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #f93b1d;
+}
+.app__resume--experience--position {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #1a1a1a;
+  margin-top: 15px;
+}
+.app__resume--experience--date {
+  margin-top: 7px;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #919191;
+}
+.app__resume--experience--description {
+  margin-top: 16px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  text-transform: capitalize;
+  color: #000000;
+}
 .app__resume--education--box {
   padding: 24px 80px 19px 80px;
-  border-bottom: 1px solid #c8c8c8;
 }
 .app__resume--education--title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #f93b1d;
 }
+.app__resume--education--school {
+  margin-top: 15px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #1a1a1a;
+}
+.app__resume--education--date {
+  margin-top: 7px;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #919191;
+}
+.app__resume--education--description {
+  margin-top: 16px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  text-transform: lowercase;
+  color: #000000;
+}
+
 /* input colors */
 .app__input--green {
   border: 1px solid #98e37e;
