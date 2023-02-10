@@ -226,7 +226,7 @@ if (personalAbout.value.length > 0) {
 }
 personalAbout.addEventListener("keyup", function () {
   sessionStorage.setItem("About", personalAbout.value);
-  console.log(sessionStorage.getItem("About"));
+  resumeAboutText.textContent = personalAbout.value;
   if (personalAbout.value.trim() === "") {
     resumeAboutTitle.textContent = "";
   } else {
@@ -443,6 +443,7 @@ function addNewPositionExperience() {
   }
   experDescription.addEventListener("keyup", function () {
     sessionStorage.setItem("experDescription", experDescription.value);
+    resumeExperDescription.textContent = experDescription.value;
 
     if (checkDateVal(experDescription)) {
       experDescription.classList.add("app__input--green");
@@ -633,6 +634,7 @@ function addNewPositionEducation() {
   resumeEduDescription.textContent = eduDescriptionInput.value;
   eduDescriptionInput.addEventListener("keyup", function () {
     sessionStorage.setItem("eduDesc", eduDescriptionInput.value);
+    resumeEduDescription.textContent = eduDescriptionInput.value;
     if (checkDateVal(eduDescriptionInput)) {
       eduDescriptionInput.classList.add("app__input--green");
       eduDescriptionInput.classList.remove("app__input--red");
@@ -653,6 +655,10 @@ function addNewPositionEducation() {
       personalInfoPage.style.display = "none";
       resumePage.style.margin = "0 auto";
       sessionStorage.clear();
+      const inputs = document.querySelectorAll("input");
+      inputs.forEach(function (input) {
+        input.value = "";
+      });
     }
   });
 }
