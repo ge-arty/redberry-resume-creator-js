@@ -304,6 +304,7 @@ backHomePageBtn.addEventListener("click", function () {
   appSection.style.display = "none";
   pageTitle.textContent = "ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ";
   pageNumber.textContent = "1/3";
+  sessionStorage.clear();
 });
 
 // ------------------------------------------------------------------------------------
@@ -651,6 +652,7 @@ function addNewPositionEducation() {
     ) {
       personalInfoPage.style.display = "none";
       resumePage.style.margin = "0 auto";
+      sessionStorage.clear();
     }
   });
 }
