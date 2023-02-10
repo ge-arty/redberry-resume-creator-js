@@ -45,7 +45,6 @@ const resumeAboutText = document.querySelector(".app__resume--about--text");
 const resumeExperTitle = document.querySelector(
   ".app__resume--experience--title"
 );
-const resumeEduTitle = document.querySelector(".app__resume--education--title");
 
 // Experience Page
 const experForm = document.querySelector(".app__experience--form");
@@ -61,8 +60,9 @@ const eduBackBtn = document.querySelector(".app__education--back--btn");
 // Page Titles and counts----
 const pageTitle = document.querySelector(".app__personal--title");
 const pageNumber = document.querySelector(".app__personal--pagenum");
-personalFunc();
 
+// sessionStorage
+// document.addEventListener("DOMContentLoaded", function () {});
 // PersonalInfo Validation
 function checkDateVal(input) {
   if (input.value === "") {
@@ -96,102 +96,144 @@ function validateUploadPicture(img) {
 function fullName(string1, string2) {
   fullNameResume.innerHTML = string1 + " " + string2;
 }
-function personalFunc() {
-  nameInput.addEventListener("keyup", function () {
-    sessionStorage.setItem("name", nameInput.value);
-    fullName(nameInput.value, lastNameInput.value);
-    fullNameResume.innerHTML = nameInput.value;
-    personObj.name = nameInput.value;
-    if (validateGeorgian(nameInput.value) && nameInput.value.length >= 2) {
-      nameInput.classList.add("app__input--green");
-      nameInput.classList.remove("app__input--red");
-    } else if (
-      !validateGeorgian(nameInput.value) &&
-      nameInput.value.length > 0
-    ) {
-      nameInput.classList.add("app__input--red");
-      nameInput.classList.remove("app__input--green");
-    } else if (nameInput.value.trim() === "") {
-      nameInput.classList.remove("app__input--green");
-      nameInput.classList.remove("app__input--red");
-    }
-  });
-  lastNameInput.addEventListener("keyup", function () {
-    fullName(nameInput.value, lastNameInput.value);
-    personObj.surname = lastNameInput.value;
-    console.log(personObj);
-    if (
-      validateGeorgian(lastNameInput.value) &&
-      lastNameInput.value.length >= 2
-    ) {
-      lastNameInput.classList.add("app__input--green");
-      lastNameInput.classList.remove("app__input--red");
-    } else if (
-      !validateGeorgian(lastNameInput.value) &&
-      lastNameInput.value.length > 0
-    ) {
-      lastNameInput.classList.add("app__input--red");
-      lastNameInput.classList.remove("app__input--green");
-    } else if (lastNameInput.value.trim() === "") {
-      lastNameInput.classList.remove("app__input--green");
-      lastNameInput.classList.remove("app__input--red");
-    }
-  });
-  emailInput.addEventListener("keyup", function () {
-    resumeEmail.textContent = emailInput.value;
-    emailSvg.style.display = "block";
-    if (emailInput.value.trim() === "") {
-      emailSvg.style.display = "none";
-      emailInput.classList.remove("app__input--green");
-      emailInput.classList.remove("app__input--red");
-    } else if (isValidEmail(emailInput.value)) {
-      emailInput.classList.add("app__input--green");
-      emailInput.classList.remove("app__input--red");
-    } else {
-      emailInput.classList.remove("app__input--green");
-      emailInput.classList.add("app__input--red");
-    }
-  });
-  mobileInput.addEventListener("keyup", function () {
-    resumeMobile.textContent = mobileInput.value;
-    mobileSvg.style.display = "block";
-    if (validateGeorgianMobile(mobileInput.value)) {
-      mobileInput.classList.add("app__input--green");
-      mobileInput.classList.remove("app__input--red");
-    } else if (
-      !validateGeorgianMobile(mobileInput.value) &&
-      mobileInput.value.length > 0
-    ) {
-      mobileInput.classList.remove("app__input--green");
-      mobileInput.classList.add("app__input--red");
-    } else if (mobileInput.value.trim() === "") {
-      mobileSvg.style.display = "none";
-      mobileInput.classList.remove("app__input--green");
-      mobileInput.classList.remove("app__input--red");
-    }
-  });
-  picUploadInput.addEventListener("change", function () {
-    const file = this.files[0];
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      resumePic.src = e.target.result;
-      resumePic.style.display = "block";
-    };
-    reader.readAsDataURL(new Blob([file]));
-  });
-  picUploadBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    picUploadInput.click();
-  });
-  personalAbout.addEventListener("keyup", function () {
-    resumeAboutText.textContent = personalAbout.value;
-    if (personalAbout.value.trim() === "") {
-      resumeAboutTitle.textContent = "";
-    } else {
-      resumeAboutTitle.textContent = "ᲩᲔᲛ ᲨᲔᲡᲐᲮᲔᲑ";
-    }
-  });
+
+nameInput.value = sessionStorage.getItem("name");
+if (validateGeorgian(nameInput.value) && nameInput.value.length >= 2) {
+  nameInput.classList.add("app__input--green");
+  nameInput.classList.remove("app__input--red");
 }
+
+nameInput.addEventListener("keyup", function () {
+  sessionStorage.setItem("name", nameInput.value);
+  fullName(nameInput.value, lastNameInput.value);
+  if (validateGeorgian(nameInput.value) && nameInput.value.length >= 2) {
+    nameInput.classList.add("app__input--green");
+    nameInput.classList.remove("app__input--red");
+  } else if (!validateGeorgian(nameInput.value) && nameInput.value.length > 0) {
+    nameInput.classList.add("app__input--red");
+    nameInput.classList.remove("app__input--green");
+  } else if (nameInput.value.trim() === "") {
+    nameInput.classList.remove("app__input--green");
+    nameInput.classList.remove("app__input--red");
+  }
+});
+lastNameInput.value = sessionStorage.getItem("surname");
+if (validateGeorgian(lastNameInput.value) && lastNameInput.value.length >= 2) {
+  lastNameInput.classList.add("app__input--green");
+  lastNameInput.classList.remove("app__input--red");
+}
+lastNameInput.addEventListener("keyup", function () {
+  sessionStorage.setItem("surname", lastNameInput.value);
+  fullName(nameInput.value, lastNameInput.value);
+  if (
+    validateGeorgian(lastNameInput.value) &&
+    lastNameInput.value.length >= 2
+  ) {
+    lastNameInput.classList.add("app__input--green");
+    lastNameInput.classList.remove("app__input--red");
+  } else if (
+    !validateGeorgian(lastNameInput.value) &&
+    lastNameInput.value.length > 0
+  ) {
+    lastNameInput.classList.add("app__input--red");
+    lastNameInput.classList.remove("app__input--green");
+  } else if (lastNameInput.value.trim() === "") {
+    lastNameInput.classList.remove("app__input--green");
+    lastNameInput.classList.remove("app__input--red");
+  }
+});
+
+fullName(nameInput.value, lastNameInput.value);
+
+emailInput.value = sessionStorage.getItem("email");
+if (emailInput.value.length > 0) {
+  emailSvg.style.display = "block";
+}
+resumeEmail.textContent = sessionStorage.getItem("email");
+if (isValidEmail(emailInput.value)) {
+  emailInput.classList.add("app__input--green");
+  emailInput.classList.remove("app__input--red");
+}
+emailInput.addEventListener("keyup", function () {
+  sessionStorage.setItem("email", emailInput.value);
+  resumeEmail.textContent = sessionStorage.getItem("email");
+  emailSvg.style.display = "block";
+  if (emailInput.value.trim() === "") {
+    emailSvg.style.display = "none";
+    emailInput.classList.remove("app__input--green");
+    emailInput.classList.remove("app__input--red");
+  } else if (isValidEmail(emailInput.value)) {
+    emailInput.classList.add("app__input--green");
+    emailInput.classList.remove("app__input--red");
+  } else {
+    emailInput.classList.remove("app__input--green");
+    emailInput.classList.add("app__input--red");
+  }
+});
+mobileInput.value = sessionStorage.getItem("mobile");
+if (mobileInput.value.length > 0) {
+  mobileSvg.style.display = "block";
+}
+resumeMobile.textContent = sessionStorage.getItem("mobile");
+if (validateGeorgianMobile(mobileInput.value)) {
+  mobileInput.classList.add("app__input--green");
+  mobileInput.classList.remove("app__input--red");
+}
+mobileInput.addEventListener("keyup", function () {
+  sessionStorage.setItem("mobile", mobileInput.value);
+  resumeMobile.textContent = sessionStorage.getItem("mobile");
+  mobileSvg.style.display = "block";
+  if (validateGeorgianMobile(mobileInput.value)) {
+    mobileInput.classList.add("app__input--green");
+    mobileInput.classList.remove("app__input--red");
+  } else if (
+    !validateGeorgianMobile(mobileInput.value) &&
+    mobileInput.value.length > 0
+  ) {
+    mobileInput.classList.remove("app__input--green");
+    mobileInput.classList.add("app__input--red");
+  } else if (mobileInput.value.trim() === "") {
+    mobileSvg.style.display = "none";
+    mobileInput.classList.remove("app__input--green");
+    mobileInput.classList.remove("app__input--red");
+  }
+});
+
+picUploadInput.addEventListener("change", function () {
+  const file = this.files[0];
+  const reader = new FileReader();
+  reader.onload = function (e) {
+    resumePic.src = e.target.result;
+    sessionStorage.setItem("profilePic", resumePic.src);
+    resumePic.style.display = "block";
+  };
+  reader.readAsDataURL(new Blob([file]));
+});
+window.onload = function () {
+  if (sessionStorage.getItem("profilePic")) {
+    resumePic.src = sessionStorage.getItem("profilePic");
+    resumePic.style.display = "block";
+  }
+};
+picUploadBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  picUploadInput.click();
+});
+personalAbout.value = sessionStorage.getItem("About");
+resumeAboutText.textContent = personalAbout.value;
+if (personalAbout.value.length > 0) {
+  resumeAboutTitle.textContent = "ᲩᲔᲛ ᲨᲔᲡᲐᲮᲔᲑ";
+}
+personalAbout.addEventListener("keyup", function () {
+  sessionStorage.setItem("About", personalAbout.value);
+  console.log(sessionStorage.getItem("About"));
+  if (personalAbout.value.trim() === "") {
+    resumeAboutTitle.textContent = "";
+  } else {
+    resumeAboutTitle.textContent = "ᲩᲔᲛ ᲨᲔᲡᲐᲮᲔᲑ";
+  }
+});
+
 personalNextBtn.addEventListener("click", function (e) {
   e.preventDefault();
   if (nameInput.value.length === 0) {
@@ -248,18 +290,6 @@ const testObj = {
 };
 
 homeBtn.addEventListener("click", function () {
-  // console.log(JSON.stringify(testObj));
-  // axios
-  //   .post(
-  //     "https://resume.redberryinternship.ge/api/cvs",
-  //     JSON.stringify(testObj)
-  //   )
-  //   .then((response) => {
-  //     console.log(response.data);
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //   });
   homePage.style.display = "none";
   appSection.style.display = "flex";
   personalForm.style.display = "flex";
@@ -275,12 +305,7 @@ backHomePageBtn.addEventListener("click", function () {
   pageTitle.textContent = "ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ";
   pageNumber.textContent = "1/3";
 });
-document.addEventListener("DOMContentLoaded", function () {
-  const savedValue = sessionStorage.getItem("inputValue");
-  if (savedValue) {
-    nameInput.value = savedValue;
-  }
-});
+
 // ------------------------------------------------------------------------------------
 
 // Experience Form Func
@@ -306,8 +331,19 @@ function addNewPositionExperience() {
   function jobInfo(input1, input2) {
     return (resumeExperPosition.textContent = input1 + " " + "," + input2);
   }
+
   const positionInput = positionTemplate.querySelector(".app__input--position");
+  positionInput.value = sessionStorage.getItem("position");
+  const resumeExperTitle = experienceTemplate.querySelector(
+    ".app__resume--experience--title"
+  );
+  if (minTwoSymbolVal(positionInput)) {
+    resumeExperTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
+    positionInput.classList.add("app__input--green");
+    positionInput.classList.remove("app__input--red");
+  }
   positionInput.addEventListener("keyup", function () {
+    sessionStorage.setItem("position", positionInput.value);
     jobInfo(positionInput.value, employerInput.value);
     if (minTwoSymbolVal(positionInput)) {
       resumeExperTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
@@ -327,8 +363,14 @@ function addNewPositionExperience() {
     }
   });
   const employerInput = positionTemplate.querySelector(".app__input--employer");
+  employerInput.value = sessionStorage.getItem("employer");
+  if (minTwoSymbolVal(employerInput)) {
+    employerInput.classList.add("app__input--green");
+    employerInput.classList.remove("app__input--red");
+  }
   employerInput.addEventListener("keyup", function () {
     jobInfo(positionInput.value, employerInput.value);
+    sessionStorage.setItem("employer", employerInput.value);
     if (minTwoSymbolVal(employerInput)) {
       employerInput.classList.add("app__input--green");
       employerInput.classList.remove("app__input--red");
@@ -344,6 +386,7 @@ function addNewPositionExperience() {
       employerInput.classList.remove("app__input--red");
     }
   });
+  jobInfo(positionInput.value, employerInput.value);
   const experDate1 = positionTemplate.querySelector(".app__date--input1");
   const experDate2 = positionTemplate.querySelector(".app__date--input2");
   const resumeExperDate = experienceTemplate.querySelector(
@@ -352,8 +395,16 @@ function addNewPositionExperience() {
   function fullDate(string1, string2) {
     return (resumeExperDate.textContent = string1 + "-" + string2);
   }
+  experDate1.value = sessionStorage.getItem("experDate1");
+  experDate2.value = sessionStorage.getItem("experDate2");
+  if (checkDateVal(experDate1)) {
+    experDate1.classList.add("app__input--green");
+    experDate1.classList.remove("app__input--red");
+  }
+  fullDate(experDate1.value, experDate2.value);
   experDate1.addEventListener("change", function () {
     fullDate(experDate1.value, experDate2.value);
+    sessionStorage.setItem("experDate1", experDate1.value);
     if (checkDateVal(experDate1)) {
       experDate1.classList.add("app__input--green");
       experDate1.classList.remove("app__input--red");
@@ -362,8 +413,13 @@ function addNewPositionExperience() {
       experDate1.classList.add("app__input--red");
     }
   });
+  if (checkDateVal(experDate1)) {
+    experDate2.classList.add("app__input--green");
+    experDate2.classList.remove("app__input--red");
+  }
   experDate2.addEventListener("change", function () {
     fullDate(experDate1.value, experDate2.value);
+    sessionStorage.setItem("experDate2", experDate2.value);
     if (checkDateVal(experDate1)) {
       experDate2.classList.add("app__input--green");
       experDate2.classList.remove("app__input--red");
@@ -375,11 +431,18 @@ function addNewPositionExperience() {
   const experDescription = positionTemplate.querySelector(
     ".app__input--description"
   );
+  experDescription.value = sessionStorage.getItem("experDescription");
+  const resumeExperDescription = experienceTemplate.querySelector(
+    ".app__resume--experience--description"
+  );
+  resumeExperDescription.textContent = experDescription.value;
+  if (checkDateVal(experDescription)) {
+    experDescription.classList.add("app__input--green");
+    experDescription.classList.remove("app__input--red");
+  }
   experDescription.addEventListener("keyup", function () {
-    const resumeExperDescription = experienceTemplate.querySelector(
-      ".app__resume--experience--description"
-    );
-    resumeExperDescription.textContent = experDescription.value;
+    sessionStorage.setItem("experDescription", experDescription.value);
+
     if (checkDateVal(experDescription)) {
       experDescription.classList.add("app__input--green");
       experDescription.classList.remove("app__input--red");
@@ -455,8 +518,18 @@ function addNewPositionEducation() {
   function fullName(input1, input2) {
     return (resumeEduSchool.textContent = input1 + " " + "," + input2);
   }
+  const resumeEduTitle = document.querySelector(
+    ".app__resume--education--title"
+  );
+  eduSchoolInput.value = sessionStorage.getItem("eduSchool");
+  if (minTwoSymbolVal(eduSchoolInput)) {
+    resumeEduTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
+    eduSchoolInput.classList.add("app__input--green");
+    eduSchoolInput.classList.remove("app__input--red");
+  }
   eduSchoolInput.addEventListener("keyup", function () {
     fullName(eduSchoolInput.value, eduDegreeSelect.value);
+    sessionStorage.setItem("eduSchool", eduSchoolInput.value);
     if (minTwoSymbolVal(eduSchoolInput)) {
       resumeEduTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
       eduSchoolInput.classList.add("app__input--green");
@@ -486,8 +559,25 @@ function addNewPositionEducation() {
       degreeOption.innerHTML = element.title;
     });
   });
+
+  // eduDegreeSelect.addEventListener("change", function () {
+  //   fullName(eduSchoolInput.value, eduDegreeSelect.value);
+
+  //   if (checkDateVal(eduDegreeSelect)) {
+  //     eduDegreeSelect.classList.add("app__input--green");
+  //     eduDegreeSelect.classList.remove("app__input--red");
+  //   } else {
+  //     eduDegreeSelect.classList.remove("app__input--green");
+  //     eduDegreeSelect.classList.add("app__input--red");
+  //   }
+  // });
+  // fullName(eduSchoolInput.value, eduDegreeSelect.value);
+  function fullName(input1, input2) {
+    return (resumeEduSchool.textContent = input1 + " " + "," + input2);
+  }
   eduDegreeSelect.addEventListener("change", function () {
     fullName(eduSchoolInput.value, eduDegreeSelect.value);
+    sessionStorage.setItem("eduDegree", eduDegreeSelect.value);
     if (checkDateVal(eduDegreeSelect)) {
       eduDegreeSelect.classList.add("app__input--green");
       eduDegreeSelect.classList.remove("app__input--red");
@@ -496,14 +586,30 @@ function addNewPositionEducation() {
       eduDegreeSelect.classList.add("app__input--red");
     }
   });
+
+  // Retrieve the saved value after page refresh
+  if (sessionStorage.getItem("eduDegree")) {
+    eduDegreeSelect.value = sessionStorage.getItem("eduDegree");
+  }
+
+  fullName(eduSchoolInput.value, eduDegreeSelect.value);
+
   const eduDateInput = positionTemplateSecond.querySelector(
     ".app__education--date"
   );
+  eduDateInput.value = sessionStorage.getItem("eduDate");
+  const resumeEduDate = educationTemplate.querySelector(
+    ".app__resume--education--date"
+  );
+
+  resumeEduDate.textContent = eduDateInput.value;
+  if (checkDateVal(eduDateInput)) {
+    eduDateInput.classList.add("app__input--green");
+    eduDateInput.classList.remove("app__input--red");
+  }
+
   eduDateInput.addEventListener("change", function () {
-    const resumeEduDate = educationTemplate.querySelector(
-      ".app__resume--education--date"
-    );
-    resumeEduDate.textContent = eduDateInput.value;
+    sessionStorage.setItem("eduDate", eduDateInput.value);
     if (checkDateVal(eduDateInput)) {
       eduDateInput.classList.add("app__input--green");
       eduDateInput.classList.remove("app__input--red");
@@ -515,11 +621,17 @@ function addNewPositionEducation() {
   const eduDescriptionInput = positionTemplateSecond.querySelector(
     ".app__input--edu--description"
   );
+  eduDescriptionInput.value = sessionStorage.getItem("eduDesc");
+  if (checkDateVal(eduDescriptionInput)) {
+    eduDescriptionInput.classList.add("app__input--green");
+    eduDescriptionInput.classList.remove("app__input--red");
+  }
+  const resumeEduDescription = educationTemplate.querySelector(
+    ".app__resume--education--description"
+  );
+  resumeEduDescription.textContent = eduDescriptionInput.value;
   eduDescriptionInput.addEventListener("keyup", function () {
-    const resumeEduDescription = educationTemplate.querySelector(
-      ".app__resume--education--description"
-    );
-    resumeEduDescription.textContent = eduDescriptionInput.value;
+    sessionStorage.setItem("eduDesc", eduDescriptionInput.value);
     if (checkDateVal(eduDescriptionInput)) {
       eduDescriptionInput.classList.add("app__input--green");
       eduDescriptionInput.classList.remove("app__input--red");
@@ -556,3 +668,16 @@ function insertAfter(referenceNode, newNode) {
 function insertBefore(referenceNode, newNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode);
 }
+
+// console.log(JSON.stringify(testObj));
+// axios
+//   .post(
+//     "https://resume.redberryinternship.ge/api/cvs",
+//     JSON.stringify(testObj)
+//   )
+//   .then((response) => {
+//     console.log(response.data);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
