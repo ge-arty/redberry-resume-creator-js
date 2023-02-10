@@ -12,6 +12,8 @@ experCreateFormBtn.addEventListener("click", function (e) {
   addNewPositionExperience();
 });
 
+// Person Object
+const personObj = {};
 // Start page variablesa--------------------
 const homeBtn = document.querySelector(".app__start--btn");
 const homePage = document.querySelector(".app__start--page");
@@ -47,11 +49,14 @@ const resumeEduTitle = document.querySelector(".app__resume--education--title");
 
 // Experience Page
 const experForm = document.querySelector(".app__experience--form");
-const experNextBtn = document.querySelector(".app__experience--next");
+
 const employerInput = document.querySelector(".app__input--employer");
+const experBox = document.querySelector(".app__resume--experience--box");
+const experBackBtn = document.querySelector(".app__experience--back");
 
 // Education Page-------
 const eduForm = document.querySelector(".app__education--form");
+const eduBackBtn = document.querySelector(".app__education--back--btn");
 
 // Page Titles and counts----
 const pageTitle = document.querySelector(".app__personal--title");
@@ -93,8 +98,10 @@ function fullName(string1, string2) {
 }
 function personalFunc() {
   nameInput.addEventListener("keyup", function () {
+    sessionStorage.setItem("name", nameInput.value);
     fullName(nameInput.value, lastNameInput.value);
     fullNameResume.innerHTML = nameInput.value;
+    personObj.name = nameInput.value;
     if (validateGeorgian(nameInput.value) && nameInput.value.length >= 2) {
       nameInput.classList.add("app__input--green");
       nameInput.classList.remove("app__input--red");
@@ -111,6 +118,8 @@ function personalFunc() {
   });
   lastNameInput.addEventListener("keyup", function () {
     fullName(nameInput.value, lastNameInput.value);
+    personObj.surname = lastNameInput.value;
+    console.log(personObj);
     if (
       validateGeorgian(lastNameInput.value) &&
       lastNameInput.value.length >= 2
@@ -185,6 +194,18 @@ function personalFunc() {
 }
 personalNextBtn.addEventListener("click", function (e) {
   e.preventDefault();
+  if (nameInput.value.length === 0) {
+    nameInput.classList.add("app__input--red");
+  }
+  if (lastNameInput.value.length === 0) {
+    lastNameInput.classList.add("app__input--red");
+  }
+  if (emailInput.value.length === 0) {
+    emailInput.classList.add("app__input--red");
+  }
+  if (mobileInput.value.length === 0) {
+    mobileInput.classList.add("app__input--red");
+  }
   if (
     validateGeorgian(nameInput.value, lastNameInput.value) &&
     validateUploadPicture(resumePic) &&
@@ -198,10 +219,52 @@ personalNextBtn.addEventListener("click", function (e) {
     experForm.style.display = "block";
   }
 });
+const testObj = {
+  name: "დავით",
+  surname: "ონიანი",
+  email: "davitoniani@redberry.ge",
+  phone_number: "+995598123456",
+  experiences: [
+    {
+      position: "back-end developer",
+      employer: "Redberry",
+      start_date: "2019/09/09",
+      due_date: "2020/09/23",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ornare nunc dui, a pellentesque magna blandit dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis diam nisi, at venenatis dolor aliquet vel. Pellentesque aliquet leo nec tortor pharetra, ac consectetur orci bibendum.",
+    },
+  ],
+  educations: [
+    {
+      institute: "თსუ",
+      degree: "სტუდენტი",
+      due_date: "2017/06/25",
+      description:
+        "სამართლის ფაკულტეტის მიზანი იყო მიგვეღო ფართო თეორიული ცოდნა სამართლის არსის, სისტემის, ძირითადი პრინციპების, სამართლებრივი სისტემების, ქართული სამართლის ისტორიული წყაროების, კერძო, სისხლის და საჯარო სამართლის სფეროების ძირითადი თეორიების, პრინციპებისა და რეგულირების თავისებურებების შესახებ.",
+    },
+  ],
+  image: "/storage/images/0rI7LyNRJRrokoSKUTb9EKvNuyYFKOvUmDQWoFt6.png",
+  about_me: "ეს არის აღწერა ჩემს შესახებ",
+};
+
 homeBtn.addEventListener("click", function () {
+  // console.log(JSON.stringify(testObj));
+  // axios
+  //   .post(
+  //     "https://resume.redberryinternship.ge/api/cvs",
+  //     JSON.stringify(testObj)
+  //   )
+  //   .then((response) => {
+  //     console.log(response.data);
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
   homePage.style.display = "none";
   appSection.style.display = "flex";
   personalForm.style.display = "flex";
+  personalInfoPage.style.display = "block";
+  resumePage.style.margin = "0";
 });
 backHomePageBtn.addEventListener("click", function () {
   homePage.style.display = "block";
@@ -211,6 +274,12 @@ backHomePageBtn.addEventListener("click", function () {
   appSection.style.display = "none";
   pageTitle.textContent = "ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ";
   pageNumber.textContent = "1/3";
+});
+document.addEventListener("DOMContentLoaded", function () {
+  const savedValue = sessionStorage.getItem("inputValue");
+  if (savedValue) {
+    nameInput.value = savedValue;
+  }
 });
 // ------------------------------------------------------------------------------------
 
@@ -227,7 +296,7 @@ function addNewPositionExperience() {
     .getElementsByClassName("app__experience--form")[0]
     .prepend(positionTemplate);
   // Insert into generated CV
-  insertAfter(
+  insertBefore(
     document.getElementsByClassName("app__resume--logo")[0],
     experienceTemplate
   );
@@ -319,15 +388,47 @@ function addNewPositionExperience() {
       experDescription.classList.add("app__input--red");
     }
   });
+  const experNextBtn = document.querySelector(".app__experience--next");
+  experNextBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (positionInput.value.length === 0) {
+      positionInput.classList.add("app__input--red");
+    }
+    if (employerInput.value.length === 0) {
+      employerInput.classList.add("app__input--red");
+    }
+    if (experDescription.value.length === 0) {
+      experDescription.classList.add("app__input--red");
+    }
+    if (experDate1.value.length === 0) {
+      experDate1.classList.add("app__input--red");
+    }
+    if (experDate2.value.length === 0) {
+      experDate2.classList.add("app__input--red");
+    }
+    if (
+      minTwoSymbolVal(positionInput) &&
+      minTwoSymbolVal(employerInput) &&
+      checkDateVal(experDescription) &&
+      checkDateVal(experDate1) &&
+      checkDateVal(experDate2)
+    ) {
+      experForm.style.display = "none";
+      pageTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
+      pageNumber.textContent = "3/3";
+      eduForm.style.display = "flex";
+      experBox.style.borderBottom = "1px solid #c8c8c8";
+    }
+  });
 }
-experNextBtn.addEventListener("click", function (e) {
+
+experBackBtn.addEventListener("click", function (e) {
   e.preventDefault();
   experForm.style.display = "none";
-  pageTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
-  pageNumber.textContent = "3/3";
-  eduForm.style.display = "flex";
+  personalForm.style.display = "flex";
+  pageTitle.textContent = "ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ";
+  pageNumber.textContent = "1/3";
 });
-
 // Education Form Func
 function addNewPositionEducation() {
   const positionTemplateSecond = document
@@ -348,11 +449,14 @@ function addNewPositionEducation() {
   const eduSchoolInput = positionTemplateSecond.querySelector(
     ".app__education--school"
   );
+  const resumeEduSchool = educationTemplate.querySelector(
+    ".app__resume--education--school"
+  );
+  function fullName(input1, input2) {
+    return (resumeEduSchool.textContent = input1 + " " + "," + input2);
+  }
   eduSchoolInput.addEventListener("keyup", function () {
-    const resumeEduSchool = educationTemplate.querySelector(
-      ".app__resume--education--school"
-    );
-    resumeEduSchool.textContent = eduSchoolInput.value;
+    fullName(eduSchoolInput.value, eduDegreeSelect.value);
     if (minTwoSymbolVal(eduSchoolInput)) {
       resumeEduTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
       eduSchoolInput.classList.add("app__input--green");
@@ -383,10 +487,7 @@ function addNewPositionEducation() {
     });
   });
   eduDegreeSelect.addEventListener("change", function () {
-    const resumeEduDegree = educationTemplate.querySelector(
-      ".app__resume--education--degree"
-    );
-    resumeEduDegree.textContent = eduDegreeSelect.value;
+    fullName(eduSchoolInput.value, eduDegreeSelect.value);
     if (checkDateVal(eduDegreeSelect)) {
       eduDegreeSelect.classList.add("app__input--green");
       eduDegreeSelect.classList.remove("app__input--red");
@@ -427,9 +528,31 @@ function addNewPositionEducation() {
       eduDescriptionInput.classList.add("app__input--red");
     }
   });
+  const eduNextBtn = document.querySelector(".app__education--finish--btn");
+  eduNextBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    if (
+      minTwoSymbolVal(eduSchoolInput) &&
+      checkDateVal(eduDegreeSelect) &&
+      checkDateVal(eduDateInput) &&
+      checkDateVal(eduDescriptionInput)
+    ) {
+      personalInfoPage.style.display = "none";
+      resumePage.style.margin = "0 auto";
+    }
+  });
 }
-
-// insertFunc
+eduBackBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  experForm.style.display = "flex";
+  eduForm.style.display = "none";
+  pageNumber.textContent = "2/3";
+  pageTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
+});
+// insert Function
 function insertAfter(referenceNode, newNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+function insertBefore(referenceNode, newNode) {
+  referenceNode.parentNode.insertBefore(newNode, referenceNode);
 }

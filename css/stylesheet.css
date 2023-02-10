@@ -21,6 +21,7 @@ textarea {
 textarea:focus {
   outline: 0;
 }
+
 label {
   font-family: "Helvetica Neue";
   font-style: normal;
@@ -31,6 +32,9 @@ label {
 }
 select {
   padding-left: 20px;
+}
+select:focus {
+  outline: 0;
 }
 
 select::after {
@@ -591,7 +595,6 @@ select::after {
 }
 .app__resume--experience--box {
   padding: 24px 80px 19px 80px;
-  border-bottom: 1px solid #c8c8c8;
 }
 .app__resume--experience--title {
   font-style: normal;
