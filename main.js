@@ -198,27 +198,32 @@ mobileInput.addEventListener("keyup", function () {
     mobileInput.classList.remove("app__input--red");
   }
 });
-
+// ------------------------Image
 picUploadInput.addEventListener("change", function () {
+  console.log(resumePic);
   const file = this.files[0];
   const reader = new FileReader();
   reader.onload = function (e) {
     resumePic.src = e.target.result;
-    sessionStorage.setItem("profilePic", resumePic.src);
     resumePic.style.display = "block";
+    sessionStorage.setItem("profilePic", e.target.result);
   };
-  reader.readAsDataURL(new Blob([file]));
+  reader.readAsDataURL(file);
 });
+
 window.onload = function () {
   if (sessionStorage.getItem("profilePic")) {
     resumePic.src = sessionStorage.getItem("profilePic");
     resumePic.style.display = "block";
   }
 };
+
 picUploadBtn.addEventListener("click", function (e) {
   e.preventDefault();
   picUploadInput.click();
 });
+
+// ---------------------------------
 personalAbout.value = sessionStorage.getItem("About");
 resumeAboutText.textContent = personalAbout.value;
 if (personalAbout.value.length > 0) {
@@ -261,34 +266,6 @@ personalNextBtn.addEventListener("click", function (e) {
     experForm.style.display = "block";
   }
 });
-const testObj = {
-  name: "დავით",
-  surname: "ონიანი",
-  email: "davitoniani@redberry.ge",
-  phone_number: "+995598123456",
-  experiences: [
-    {
-      position: "back-end developer",
-      employer: "Redberry",
-      start_date: "2019/09/09",
-      due_date: "2020/09/23",
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ornare nunc dui, a pellentesque magna blandit dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum mattis diam nisi, at venenatis dolor aliquet vel. Pellentesque aliquet leo nec tortor pharetra, ac consectetur orci bibendum.",
-    },
-  ],
-  educations: [
-    {
-      degree_id: 7,
-      institute: "თსუ",
-      degree: "სტუდენტი",
-      due_date: "2017/06/25",
-      description:
-        "სამართლის ფაკულტეტის მიზანი იყო მიგვეღო ფართო თეორიული ცოდნა სამართლის არსის, სისტემის, ძირითადი პრინციპების, სამართლებრივი სისტემების, ქართული სამართლის ისტორიული წყაროების, კერძო, სისხლის და საჯარო სამართლის სფეროების ძირითადი თეორიების, პრინციპებისა და რეგულირების თავისებურებების შესახებ.",
-    },
-  ],
-  image: "image-name.png",
-  about_me: "ეს არის აღწერა ჩემს შესახებ",
-};
 
 homeBtn.addEventListener("click", function () {
   homePage.style.display = "none";
@@ -306,6 +283,7 @@ backHomePageBtn.addEventListener("click", function () {
   pageTitle.textContent = "ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ";
   pageNumber.textContent = "1/3";
   sessionStorage.clear();
+  location.reload();
 });
 
 // ------------------------------------------------------------------------------------
@@ -483,7 +461,6 @@ function addNewPositionExperience() {
       pageTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
       pageNumber.textContent = "3/3";
       eduForm.style.display = "flex";
-      experBox.style.borderBottom = "1px solid #c8c8c8";
     }
   });
 }
@@ -552,24 +529,29 @@ function addNewPositionEducation() {
   const eduDegreeSelect = positionTemplateSecond.querySelector(
     ".app__education--select"
   );
+  // Axios API Get
+  axios.get("https://resume.redberryinternship.ge/api/degrees").then((resp) => {
+    const degreeArr = resp.data;
+    degreeArr.forEach((element) => {
+      let degreeOption = document.createElement("option");
+      eduDegreeSelect.appendChild(degreeOption);
+      degreeOption.value = element.id;
+      degreeOption.textContent = element.title;
+    });
 
-  // eduDegreeSelect.addEventListener("change", function () {
-  //   fullName(eduSchoolInput.value, eduDegreeSelect.value);
+    if (sessionStorage.getItem("eduDegree")) {
+      eduDegreeSelect.value = sessionStorage.getItem("eduDegree");
+      eduDegreeSelect.dispatchEvent(new Event("change"));
+    }
+  });
 
-  //   if (checkDateVal(eduDegreeSelect)) {
-  //     eduDegreeSelect.classList.add("app__input--green");
-  //     eduDegreeSelect.classList.remove("app__input--red");
-  //   } else {
-  //     eduDegreeSelect.classList.remove("app__input--green");
-  //     eduDegreeSelect.classList.add("app__input--red");
-  //   }
-  // });
-  // fullName(eduSchoolInput.value, eduDegreeSelect.value);
   function fullName(input1, input2) {
     return (resumeEduSchool.textContent = input1 + " " + "," + input2);
   }
   eduDegreeSelect.addEventListener("change", function () {
-    fullName(eduSchoolInput.value, eduDegreeSelect.value);
+    let selectedOption =
+      eduDegreeSelect.options[eduDegreeSelect.selectedIndex].textContent;
+    fullName(eduSchoolInput.value, selectedOption);
     sessionStorage.setItem("eduDegree", eduDegreeSelect.value);
     if (checkDateVal(eduDegreeSelect)) {
       eduDegreeSelect.classList.add("app__input--green");
@@ -581,8 +563,6 @@ function addNewPositionEducation() {
   });
 
   // Retrieve the saved value after page refresh
-
-  fullName(eduSchoolInput.value, eduDegreeSelect.value);
 
   const eduDateInput = positionTemplateSecond.querySelector(
     ".app__education--date"
@@ -634,6 +614,10 @@ function addNewPositionEducation() {
   const eduNextBtn = document.querySelector(".app__education--finish--btn");
   eduNextBtn.addEventListener("click", function (e) {
     e.preventDefault();
+    submit();
+    console.log(nameInput.value);
+    console.log(resumePic);
+    console.log(picUploadInput.files[0]);
     if (
       minTwoSymbolVal(eduSchoolInput) &&
       checkDateVal(eduDegreeSelect) &&
@@ -642,11 +626,7 @@ function addNewPositionEducation() {
     ) {
       personalInfoPage.style.display = "none";
       resumePage.style.margin = "0 auto";
-      sessionStorage.clear();
-      const inputs = document.querySelectorAll("input");
-      inputs.forEach(function (input) {
-        input.value = "";
-      });
+      // sessionStorage.clear();
     }
   });
 }
@@ -664,12 +644,6 @@ function insertAfter(referenceNode, newNode) {
 function insertBefore(referenceNode, newNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode);
 }
-
-document
-  .querySelector(".app__personal--header")
-  .addEventListener("click", function () {
-    submit();
-  });
 
 function submit() {
   const formModel = getFormModel();
@@ -697,7 +671,6 @@ function getFormModel() {
       description: d.querySelector(".app__input--description").value,
     };
   });
-
   const allEducations = Array.from(
     document.querySelectorAll(".app__personal--page .education-wrap")
   ).map((d) => {
@@ -711,7 +684,7 @@ function getFormModel() {
       description: d.querySelector(".app__input--edu--description").value,
     };
   });
-
+  //
   return {
     name: nameInput.value,
     surname: lastNameInput.value,
@@ -754,19 +727,3 @@ function convertModelToFormData(data = {}, form = null, namespace = "") {
 
   return formData;
 }
-
-// Axios API Get
-axios.get("https://resume.redberryinternship.ge/api/degrees").then((resp) => {
-  const degreeArr = resp.data;
-  degreeArr.forEach((element) => {
-    let degreeOption = document.createElement("option");
-    eduDegreeSelect.appendChild(degreeOption);
-    degreeOption.value = element.id;
-    degreeOption.innerHTML = element.title;
-  });
-
-  if (sessionStorage.getItem("eduDegree")) {
-    eduDegreeSelect.value = sessionStorage.getItem("eduDegree");
-    eduDegreeSelect.dispatchEvent(new Event("change"));
-  }
-});

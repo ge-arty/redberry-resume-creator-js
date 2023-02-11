@@ -516,10 +516,10 @@ select::after {
 
 /* Resume generator Page */
 .app__resume--page {
-  height: 1080px;
   width: 42.9%;
   background-color: #fff;
   position: relative;
+  padding-bottom: 10%;
 }
 .app__resume--logo {
   left: 9.4%;
@@ -535,7 +535,6 @@ select::after {
 }
 .app__resume--personalinfo {
   width: 70%;
-  height: 246px;
   padding-bottom: 16px;
 }
 .app__resume--fullname {
@@ -544,6 +543,7 @@ select::after {
   font-size: 34px;
   line-height: 42px;
   color: #f93b1d;
+  overflow: auto;
 }
 .app__resume--about {
   font-style: normal;
