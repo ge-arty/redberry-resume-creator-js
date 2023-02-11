@@ -278,6 +278,7 @@ const testObj = {
   ],
   educations: [
     {
+      degree_id: 7,
       institute: "თსუ",
       degree: "სტუდენტი",
       due_date: "2017/06/25",
@@ -285,7 +286,7 @@ const testObj = {
         "სამართლის ფაკულტეტის მიზანი იყო მიგვეღო ფართო თეორიული ცოდნა სამართლის არსის, სისტემის, ძირითადი პრინციპების, სამართლებრივი სისტემების, ქართული სამართლის ისტორიული წყაროების, კერძო, სისხლის და საჯარო სამართლის სფეროების ძირითადი თეორიების, პრინციპებისა და რეგულირების თავისებურებების შესახებ.",
     },
   ],
-  image: "/storage/images/0rI7LyNRJRrokoSKUTb9EKvNuyYFKOvUmDQWoFt6.png",
+  image: "image-name.png",
   about_me: "ეს არის აღწერა ჩემს შესახებ",
 };
 
@@ -551,16 +552,6 @@ function addNewPositionEducation() {
   const eduDegreeSelect = positionTemplateSecond.querySelector(
     ".app__education--select"
   );
-  // Axios API Get
-  axios.get("https://resume.redberryinternship.ge/api/degrees").then((resp) => {
-    const degreeArr = resp.data;
-    degreeArr.forEach((element) => {
-      let degreeOption = document.createElement("option");
-      eduDegreeSelect.appendChild(degreeOption);
-      degreeOption.value = element.title;
-      degreeOption.innerHTML = element.title;
-    });
-  });
 
   // eduDegreeSelect.addEventListener("change", function () {
   //   fullName(eduSchoolInput.value, eduDegreeSelect.value);
@@ -590,9 +581,6 @@ function addNewPositionEducation() {
   });
 
   // Retrieve the saved value after page refresh
-  if (sessionStorage.getItem("eduDegree")) {
-    eduDegreeSelect.value = sessionStorage.getItem("eduDegree");
-  }
 
   fullName(eduSchoolInput.value, eduDegreeSelect.value);
 
@@ -677,15 +665,108 @@ function insertBefore(referenceNode, newNode) {
   referenceNode.parentNode.insertBefore(newNode, referenceNode);
 }
 
-// console.log(JSON.stringify(testObj));
-// axios
-//   .post(
-//     "https://resume.redberryinternship.ge/api/cvs",
-//     JSON.stringify(testObj)
-//   )
-//   .then((response) => {
-//     console.log(response.data);
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
+document
+  .querySelector(".app__personal--header")
+  .addEventListener("click", function () {
+    submit();
+  });
+
+function submit() {
+  const formModel = getFormModel();
+  const formData = convertModelToFormData(formModel);
+
+  axios
+    .post("https://resume.redberryinternship.ge/api/cvs", formData)
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function getFormModel() {
+  const allExperiences = Array.from(
+    document.querySelectorAll(".app__personal--page .position-wrap")
+  ).map((d) => {
+    return {
+      position: d.querySelector(".app__input--position").value,
+      employer: d.querySelector(".app__input--employer").value,
+      start_date: d.querySelector(".app__date--input1").value,
+      due_date: d.querySelector(".app__date--input2").value,
+      description: d.querySelector(".app__input--description").value,
+    };
+  });
+
+  const allEducations = Array.from(
+    document.querySelectorAll(".app__personal--page .education-wrap")
+  ).map((d) => {
+    const degreeSelect = d.querySelector(".app__education--select");
+
+    return {
+      institute: d.querySelector(".app__education--school").value,
+      degree_id: degreeSelect.value,
+      degree: degreeSelect.options[degreeSelect.selectedIndex].text,
+      due_date: d.querySelector(".app__education--date").value,
+      description: d.querySelector(".app__input--edu--description").value,
+    };
+  });
+
+  return {
+    name: nameInput.value,
+    surname: lastNameInput.value,
+    email: emailInput.value,
+    phone_number: mobileInput.value,
+    experiences: allExperiences,
+    educations: allEducations,
+    image: picUploadInput.files[0],
+    about_me: personalAbout.value,
+  };
+}
+
+function convertModelToFormData(data = {}, form = null, namespace = "") {
+  const formData = form || new FormData();
+
+  for (const propertyName in data) {
+    if (!data.hasOwnProperty(propertyName) || !data[propertyName]) continue;
+    let formKey = namespace ? `${namespace}[${propertyName}]` : propertyName;
+    if (data[propertyName] instanceof Date)
+      formData.append(formKey, data[propertyName].toISOString());
+    else if (data[propertyName] instanceof File) {
+      formKey = formKey.replace("[" + propertyName + "]", "." + propertyName);
+      formData.append(formKey, data[propertyName]);
+    } else if (data[propertyName] instanceof Array) {
+      data[propertyName].forEach((element, index) => {
+        const tempFormKey = `${formKey}[${index}]`;
+        if (typeof element === "object")
+          convertModelToFormData(element, formData, tempFormKey);
+        else formData.append(tempFormKey, element.toString());
+      });
+    } else if (
+      typeof data[propertyName] === "object" &&
+      !(data[propertyName] instanceof File)
+    ) {
+      convertModelToFormData(data[propertyName], formData, formKey);
+    } else {
+      formData.append(formKey, data[propertyName].toString());
+    }
+  }
+
+  return formData;
+}
+
+// Axios API Get
+axios.get("https://resume.redberryinternship.ge/api/degrees").then((resp) => {
+  const degreeArr = resp.data;
+  degreeArr.forEach((element) => {
+    let degreeOption = document.createElement("option");
+    eduDegreeSelect.appendChild(degreeOption);
+    degreeOption.value = element.id;
+    degreeOption.innerHTML = element.title;
+  });
+
+  if (sessionStorage.getItem("eduDegree")) {
+    eduDegreeSelect.value = sessionStorage.getItem("eduDegree");
+    eduDegreeSelect.dispatchEvent(new Event("change"));
+  }
+});
