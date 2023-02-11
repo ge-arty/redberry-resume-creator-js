@@ -200,7 +200,6 @@ mobileInput.addEventListener("keyup", function () {
 });
 // ------------------------Image
 picUploadInput.addEventListener("change", function () {
-  console.log(resumePic);
   const file = this.files[0];
   const reader = new FileReader();
   reader.onload = function (e) {
@@ -496,7 +495,7 @@ function addNewPositionEducation() {
     ".app__resume--education--school"
   );
   function fullName(input1, input2) {
-    return (resumeEduSchool.textContent = input1 + " " + "," + input2);
+    return (resumeEduSchool.textContent = input1 + " " + input2);
   }
   const resumeEduTitle = document.querySelector(
     ".app__resume--education--title"
@@ -614,19 +613,19 @@ function addNewPositionEducation() {
   const eduNextBtn = document.querySelector(".app__education--finish--btn");
   eduNextBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    submit();
-    console.log(nameInput.value);
-    console.log(resumePic);
-    console.log(picUploadInput.files[0]);
+    if (picUploadInput.files[0] === undefined) {
+      return alert(`Please,go back and re-upload profile picture!`);
+    }
     if (
       minTwoSymbolVal(eduSchoolInput) &&
       checkDateVal(eduDegreeSelect) &&
       checkDateVal(eduDateInput) &&
       checkDateVal(eduDescriptionInput)
     ) {
+      submit();
       personalInfoPage.style.display = "none";
       resumePage.style.margin = "0 auto";
-      // sessionStorage.clear();
+      sessionStorage.clear();
     }
   });
 }
