@@ -44,7 +44,7 @@ const resumeAboutText = document.querySelector(".app__resume--about--text");
 const resumeExperTitle = document.querySelector(
   ".app__resume--experience--title"
 );
-
+const resumeGrayLine = document.querySelector(".app__resume--gray-line");
 // Experience Page
 const experForm = document.querySelector(".app__experience--form");
 const employerInput = document.querySelector(".app__input--employer");
@@ -349,6 +349,7 @@ personalNextBtn.addEventListener("click", function (e) {
     validateGeorgianMobile(mobileInput.value) &&
     picUploadInput.files[0]
   ) {
+    resumeGrayLine.style.display = "block";
     resumeExperTitle.style.display = "block";
     personalForm.style.display = "none";
     pageTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";

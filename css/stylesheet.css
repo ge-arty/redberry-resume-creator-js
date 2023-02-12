@@ -674,6 +674,13 @@ select::after {
   text-transform: lowercase;
   color: #000000;
 }
+.app__resume--gray-line {
+  border: 1px solid #c8c8c8;
+  width: 100%;
+  max-width: 662px;
+  margin: 0 auto;
+  display: none;
+}
 
 /* input colors */
 .app__input--green {
