@@ -90,6 +90,7 @@ const mobileInputValidMarkGreen = document.querySelector(
 const mobileInputValidMarkRed = document.querySelector(
   ".app__validate--mark--red-max-width2"
 );
+
 // PersonalInfo Validation
 function checkDateVal(input) {
   if (input.value === "") {
@@ -404,7 +405,19 @@ function addNewPositionExperience() {
   function jobInfo(input1, input2) {
     return (resumeExperPosition.textContent = input1 + " " + "," + input2);
   }
-
+  // Experience Page Validation Marks
+  const positionInputValidMarkGreen = positionTemplate.querySelector(
+    ".app__validate--mark--green-max-width3"
+  );
+  const positionInputValidMarkRed = positionTemplate.querySelector(
+    ".app__validate--mark--red-max-width3"
+  );
+  const employerInputValidMarkGreen = positionTemplate.querySelector(
+    ".app__validate--mark--green-max-width4"
+  );
+  const employerInputValidMarkRed = positionTemplate.querySelector(
+    ".app__validate--mark--red-max-width4"
+  );
   const positionInput = positionTemplate.querySelector(".app__input--position");
   positionInput.value = sessionStorage.getItem("position");
   const resumeExperTitle = experienceTemplate.querySelector(
@@ -414,6 +427,13 @@ function addNewPositionExperience() {
     resumeExperTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
     positionInput.classList.add("app__input--green");
     positionInput.classList.remove("app__input--red");
+    positionInputValidMarkGreen.style.opacity = "100";
+    positionInputValidMarkRed.style.opacity = "0";
+  } else {
+    positionInput.classList.remove("app__input--green");
+    positionInput.classList.add("app__input--red");
+    positionInputValidMarkGreen.style.opacity = "0";
+    positionInputValidMarkRed.style.opacity = "100";
   }
   positionInput.addEventListener("keyup", function () {
     sessionStorage.setItem("position", positionInput.value);
@@ -422,6 +442,8 @@ function addNewPositionExperience() {
       resumeExperTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
       positionInput.classList.add("app__input--green");
       positionInput.classList.remove("app__input--red");
+      positionInputValidMarkGreen.style.opacity = "100";
+      positionInputValidMarkRed.style.opacity = "0";
     } else if (
       !minTwoSymbolVal(positionInput) &&
       positionInput.value.length > 0 &&
@@ -429,10 +451,14 @@ function addNewPositionExperience() {
     ) {
       positionInput.classList.remove("app__input--green");
       positionInput.classList.add("app__input--red");
+      positionInputValidMarkGreen.style.opacity = "0";
+      positionInputValidMarkRed.style.opacity = "100";
     } else {
       resumeExperTitle.textContent = " ";
       positionInput.classList.remove("app__input--green");
       positionInput.classList.remove("app__input--red");
+      positionInputValidMarkGreen.style.opacity = "0";
+      positionInputValidMarkRed.style.opacity = "0";
     }
   });
   const employerInput = positionTemplate.querySelector(".app__input--employer");
@@ -440,6 +466,13 @@ function addNewPositionExperience() {
   if (minTwoSymbolVal(employerInput)) {
     employerInput.classList.add("app__input--green");
     employerInput.classList.remove("app__input--red");
+    employerInputValidMarkGreen.style.opacity = "100";
+    employerInputValidMarkRed.style.opacity = "0";
+  } else {
+    employerInput.classList.remove("app__input--green");
+    employerInput.classList.add("app__input--red");
+    employerInputValidMarkGreen.style.opacity = "0";
+    employerInputValidMarkRed.style.opacity = "100";
   }
   employerInput.addEventListener("keyup", function () {
     jobInfo(positionInput.value, employerInput.value);
@@ -447,6 +480,8 @@ function addNewPositionExperience() {
     if (minTwoSymbolVal(employerInput)) {
       employerInput.classList.add("app__input--green");
       employerInput.classList.remove("app__input--red");
+      employerInputValidMarkGreen.style.opacity = "100";
+      employerInputValidMarkRed.style.opacity = "0";
     } else if (
       !minTwoSymbolVal(employerInput) &&
       employerInput.value.length > 0 &&
@@ -454,9 +489,13 @@ function addNewPositionExperience() {
     ) {
       employerInput.classList.remove("app__input--green");
       employerInput.classList.add("app__input--red");
+      employerInputValidMarkGreen.style.opacity = "100";
+      employerInputValidMarkRed.style.opacity = "0";
     } else {
       employerInput.classList.remove("app__input--green");
       employerInput.classList.remove("app__input--red");
+      employerInputValidMarkGreen.style.opacity = "0";
+      employerInputValidMarkRed.style.opacity = "0";
     }
   });
   jobInfo(positionInput.value, employerInput.value);
@@ -594,11 +633,24 @@ function addNewPositionEducation() {
   const resumeEduTitle = document.querySelector(
     ".app__resume--education--title"
   );
+  const schoolInputValidMarkGreen = positionTemplateSecond.querySelector(
+    ".app__validate--mark--green-max-width5"
+  );
+  const schoolInputValidMarkRed = positionTemplateSecond.querySelector(
+    ".app__validate--mark--red-max-width5"
+  );
   eduSchoolInput.value = sessionStorage.getItem("eduSchool");
   if (minTwoSymbolVal(eduSchoolInput)) {
     resumeEduTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
     eduSchoolInput.classList.add("app__input--green");
     eduSchoolInput.classList.remove("app__input--red");
+    schoolInputValidMarkGreen.style.opacity = "100";
+    schoolInputValidMarkRed.style.opacity = "0";
+  } else {
+    eduSchoolInput.classList.remove("app__input--green");
+    eduSchoolInput.classList.add("app__input--red");
+    schoolInputValidMarkGreen.style.opacity = "0";
+    schoolInputValidMarkRed.style.opacity = "100";
   }
   eduSchoolInput.addEventListener("keyup", function () {
     fullName(eduSchoolInput.value, eduDegreeSelect.value);
@@ -607,6 +659,8 @@ function addNewPositionEducation() {
       resumeEduTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
       eduSchoolInput.classList.add("app__input--green");
       eduSchoolInput.classList.remove("app__input--red");
+      schoolInputValidMarkGreen.style.opacity = "100";
+      schoolInputValidMarkRed.style.opacity = "0";
     } else if (
       !minTwoSymbolVal(eduSchoolInput) &&
       eduSchoolInput.value.length > 0 &&
@@ -614,9 +668,13 @@ function addNewPositionEducation() {
     ) {
       eduSchoolInput.classList.remove("app__input--green");
       eduSchoolInput.classList.add("app__input--red");
+      schoolInputValidMarkGreen.style.opacity = "0";
+      schoolInputValidMarkRed.style.opacity = "100";
     } else {
       eduSchoolInput.classList.remove("app__input--green");
       eduSchoolInput.classList.remove("app__input--red");
+      schoolInputValidMarkGreen.style.opacity = "0";
+      schoolInputValidMarkRed.style.opacity = "0";
     }
   });
   const eduDegreeSelect = positionTemplateSecond.querySelector(

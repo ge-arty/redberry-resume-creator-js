@@ -768,3 +768,57 @@ select::after {
   right: -35px;
   opacity: 0;
 }
+.app__validate--mark--green-max-width3 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-green.png") no-repeat;
+  background-position: center;
+  right: 15px;
+  opacity: 0;
+}
+.app__validate--mark--red-max-width3 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-red.png") no-repeat;
+  background-position: center;
+  right: -35px;
+  opacity: 0;
+}
+.app__validate--mark--green-max-width4 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-green.png") no-repeat;
+  background-position: center;
+  right: 15px;
+  opacity: 0;
+}
+.app__validate--mark--red-max-width4 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-red.png") no-repeat;
+  background-position: center;
+  right: -35px;
+  opacity: 0;
+}
+.app__validate--mark--green-max-width5 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-green.png") no-repeat;
+  background-position: center;
+  right: 15px;
+  opacity: 0;
+}
+.app__validate--mark--red-max-width5 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-red.png") no-repeat;
+  background-position: center;
+  right: -35px;
+  opacity: 0;
+}
