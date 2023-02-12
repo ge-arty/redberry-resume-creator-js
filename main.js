@@ -12,8 +12,6 @@ experCreateFormBtn.addEventListener("click", function (e) {
   addNewPositionExperience();
 });
 
-// Person Object
-const personObj = {};
 // Start page variablesa--------------------
 const homeBtn = document.querySelector(".app__start--btn");
 const homePage = document.querySelector(".app__start--page");
@@ -31,6 +29,7 @@ const nameInput = document.querySelector(".app__personal--name--input");
 const lastNameInput = document.querySelector(".app__personal--lastname--input");
 const emailInput = document.querySelector(".app__input--email");
 const mobileInput = document.querySelector(".app__input--mobile");
+
 // Resume generator page Variables
 const resumePage = document.querySelector(".app__resume--page");
 const resumePersonalBlock = document.querySelector(".app__resume--personal");
@@ -48,7 +47,6 @@ const resumeExperTitle = document.querySelector(
 
 // Experience Page
 const experForm = document.querySelector(".app__experience--form");
-
 const employerInput = document.querySelector(".app__input--employer");
 const experBox = document.querySelector(".app__resume--experience--box");
 const experBackBtn = document.querySelector(".app__experience--back");
@@ -61,8 +59,37 @@ const eduBackBtn = document.querySelector(".app__education--back--btn");
 const pageTitle = document.querySelector(".app__personal--title");
 const pageNumber = document.querySelector(".app__personal--pagenum");
 
-// sessionStorage
-// document.addEventListener("DOMContentLoaded", function () {});
+// Personal Page Validation Marks
+const nameInputValidMarkGreen = document.querySelector(
+  ".app__validate--mark--green1"
+);
+const nameInputValidMarkRed = document.querySelector(
+  ".app__validate--mark--red1"
+);
+const lastNameInputValidMarkGreen = document.querySelector(
+  ".app__validate--mark--green2"
+);
+const lastNameInputValidMarkRed = document.querySelector(
+  ".app__validate--mark--red2"
+);
+const uploadInputValidMarkGreen = document.querySelector(
+  ".app__validate--mark--green-upload"
+);
+const uploadInputValidMarkRed = document.querySelector(
+  ".app__validate--mark--red-upload"
+);
+const emailInputValidMarkGreen = document.querySelector(
+  ".app__validate--mark--green-max-width1"
+);
+const emailInputValidMarkRed = document.querySelector(
+  ".app__validate--mark--red-max-width1"
+);
+const mobileInputValidMarkGreen = document.querySelector(
+  ".app__validate--mark--green-max-width2"
+);
+const mobileInputValidMarkRed = document.querySelector(
+  ".app__validate--mark--red-max-width2"
+);
 // PersonalInfo Validation
 function checkDateVal(input) {
   if (input.value === "") {
@@ -101,6 +128,13 @@ nameInput.value = sessionStorage.getItem("name");
 if (validateGeorgian(nameInput.value) && nameInput.value.length >= 2) {
   nameInput.classList.add("app__input--green");
   nameInput.classList.remove("app__input--red");
+  nameInputValidMarkGreen.style.opacity = "100";
+  nameInputValidMarkRed.style.opacity = "0";
+} else {
+  nameInput.classList.remove("app__input--green");
+  nameInput.classList.add("app__input--red");
+  nameInputValidMarkGreen.style.opacity = "0";
+  nameInputValidMarkRed.style.opacity = "100";
 }
 
 nameInput.addEventListener("keyup", function () {
@@ -109,18 +143,33 @@ nameInput.addEventListener("keyup", function () {
   if (validateGeorgian(nameInput.value) && nameInput.value.length >= 2) {
     nameInput.classList.add("app__input--green");
     nameInput.classList.remove("app__input--red");
+    nameInputValidMarkGreen.style.opacity = "100";
+    nameInputValidMarkRed.style.opacity = "0";
   } else if (!validateGeorgian(nameInput.value) && nameInput.value.length > 0) {
     nameInput.classList.add("app__input--red");
     nameInput.classList.remove("app__input--green");
+    nameInputValidMarkGreen.style.opacity = "0";
+    nameInputValidMarkRed.style.opacity = "100";
   } else if (nameInput.value.trim() === "") {
     nameInput.classList.remove("app__input--green");
     nameInput.classList.remove("app__input--red");
+    nameInputValidMarkGreen.style.opacity = "0";
+    nameInputValidMarkRed.style.opacity = "0";
   }
 });
 lastNameInput.value = sessionStorage.getItem("surname");
 if (validateGeorgian(lastNameInput.value) && lastNameInput.value.length >= 2) {
   lastNameInput.classList.add("app__input--green");
   lastNameInput.classList.remove("app__input--red");
+  lastNameInput.classList.add("app__input--green");
+  lastNameInput.classList.remove("app__input--red");
+  lastNameInputValidMarkGreen.style.opacity = "100";
+  lastNameInputValidMarkRed.style.opacity = "0";
+} else {
+  lastNameInput.classList.remove("app__input--green");
+  lastNameInput.classList.add("app__input--red");
+  lastNameInputValidMarkGreen.style.opacity = "0";
+  lastNameInputValidMarkRed.style.opacity = "100";
 }
 lastNameInput.addEventListener("keyup", function () {
   sessionStorage.setItem("surname", lastNameInput.value);
@@ -131,15 +180,21 @@ lastNameInput.addEventListener("keyup", function () {
   ) {
     lastNameInput.classList.add("app__input--green");
     lastNameInput.classList.remove("app__input--red");
+    lastNameInputValidMarkGreen.style.opacity = "100";
+    lastNameInputValidMarkRed.style.opacity = "0";
   } else if (
     !validateGeorgian(lastNameInput.value) &&
     lastNameInput.value.length > 0
   ) {
     lastNameInput.classList.add("app__input--red");
     lastNameInput.classList.remove("app__input--green");
+    lastNameInputValidMarkGreen.style.opacity = "0";
+    lastNameInputValidMarkRed.style.opacity = "100";
   } else if (lastNameInput.value.trim() === "") {
     lastNameInput.classList.remove("app__input--green");
     lastNameInput.classList.remove("app__input--red");
+    lastNameInputValidMarkGreen.style.opacity = "0";
+    lastNameInputValidMarkRed.style.opacity = "0";
   }
 });
 
@@ -153,6 +208,13 @@ resumeEmail.textContent = sessionStorage.getItem("email");
 if (isValidEmail(emailInput.value)) {
   emailInput.classList.add("app__input--green");
   emailInput.classList.remove("app__input--red");
+  emailInputValidMarkGreen.style.opacity = "100";
+  emailInputValidMarkRed.style.opacity = "0";
+} else {
+  emailInput.classList.remove("app__input--green");
+  emailInput.classList.add("app__input--red");
+  emailInputValidMarkGreen.style.opacity = "0";
+  emailInputValidMarkRed.style.opacity = "100";
 }
 emailInput.addEventListener("keyup", function () {
   sessionStorage.setItem("email", emailInput.value);
@@ -162,12 +224,18 @@ emailInput.addEventListener("keyup", function () {
     emailSvg.style.display = "none";
     emailInput.classList.remove("app__input--green");
     emailInput.classList.remove("app__input--red");
+    emailInputValidMarkGreen.style.opacity = "0";
+    emailInputValidMarkRed.style.opacity = "0";
   } else if (isValidEmail(emailInput.value)) {
     emailInput.classList.add("app__input--green");
     emailInput.classList.remove("app__input--red");
+    emailInputValidMarkGreen.style.opacity = "100";
+    emailInputValidMarkRed.style.opacity = "0";
   } else {
     emailInput.classList.remove("app__input--green");
     emailInput.classList.add("app__input--red");
+    emailInputValidMarkGreen.style.opacity = "0";
+    emailInputValidMarkRed.style.opacity = "100";
   }
 });
 mobileInput.value = sessionStorage.getItem("mobile");
@@ -178,6 +246,13 @@ resumeMobile.textContent = sessionStorage.getItem("mobile");
 if (validateGeorgianMobile(mobileInput.value)) {
   mobileInput.classList.add("app__input--green");
   mobileInput.classList.remove("app__input--red");
+  mobileInputValidMarkGreen.style.opacity = "100";
+  mobileInputValidMarkRed.style.opacity = "0";
+} else {
+  mobileInput.classList.remove("app__input--green");
+  mobileInput.classList.add("app__input--red");
+  mobileInputValidMarkGreen.style.opacity = "0";
+  mobileInputValidMarkRed.style.opacity = "100";
 }
 mobileInput.addEventListener("keyup", function () {
   sessionStorage.setItem("mobile", mobileInput.value);
@@ -186,16 +261,22 @@ mobileInput.addEventListener("keyup", function () {
   if (validateGeorgianMobile(mobileInput.value)) {
     mobileInput.classList.add("app__input--green");
     mobileInput.classList.remove("app__input--red");
+    mobileInputValidMarkGreen.style.opacity = "100";
+    mobileInputValidMarkRed.style.opacity = "0";
   } else if (
     !validateGeorgianMobile(mobileInput.value) &&
     mobileInput.value.length > 0
   ) {
     mobileInput.classList.remove("app__input--green");
     mobileInput.classList.add("app__input--red");
+    mobileInputValidMarkGreen.style.opacity = "0";
+    mobileInputValidMarkRed.style.opacity = "100";
   } else if (mobileInput.value.trim() === "") {
     mobileSvg.style.display = "none";
     mobileInput.classList.remove("app__input--green");
     mobileInput.classList.remove("app__input--red");
+    mobileInputValidMarkGreen.style.opacity = "0";
+    mobileInputValidMarkRed.style.opacity = "0";
   }
 });
 // ------------------------Image
@@ -208,6 +289,8 @@ picUploadInput.addEventListener("change", function () {
     sessionStorage.setItem("profilePic", e.target.result);
   };
   reader.readAsDataURL(file);
+  uploadInputValidMarkGreen.style.opacity = "100";
+  uploadInputValidMarkRed.style.opacity = "0";
 });
 
 window.onload = function () {
@@ -240,6 +323,7 @@ personalAbout.addEventListener("keyup", function () {
 
 personalNextBtn.addEventListener("click", function (e) {
   e.preventDefault();
+
   if (nameInput.value.length === 0) {
     nameInput.classList.add("app__input--red");
   }
@@ -252,11 +336,17 @@ personalNextBtn.addEventListener("click", function (e) {
   if (mobileInput.value.length === 0) {
     mobileInput.classList.add("app__input--red");
   }
+  if (picUploadInput.files[0] === undefined) {
+    uploadInputValidMarkRed.style.opacity = "100";
+    uploadInputValidMarkGreen.style.opacity = "0";
+    alert(`Please upload profile picture`);
+  }
   if (
     validateGeorgian(nameInput.value, lastNameInput.value) &&
     validateUploadPicture(resumePic) &&
     isValidEmail(emailInput.value) &&
-    validateGeorgianMobile(mobileInput.value)
+    validateGeorgianMobile(mobileInput.value) &&
+    picUploadInput.files[0]
   ) {
     resumePersonalBlock.style.borderBottom = "1px solid #c8c8c8";
     personalForm.style.display = "none";
@@ -272,6 +362,10 @@ homeBtn.addEventListener("click", function () {
   personalForm.style.display = "flex";
   personalInfoPage.style.display = "block";
   resumePage.style.margin = "0";
+  if (picUploadInput.files[0] === undefined) {
+    uploadInputValidMarkGreen.style.opacity = "0";
+    uploadInputValidMarkRed.style.opacity = "100";
+  }
 });
 backHomePageBtn.addEventListener("click", function () {
   homePage.style.display = "block";
@@ -613,9 +707,6 @@ function addNewPositionEducation() {
   const eduNextBtn = document.querySelector(".app__education--finish--btn");
   eduNextBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    if (picUploadInput.files[0] === undefined) {
-      return alert(`Please,go back and re-upload profile picture!`);
-    }
     if (
       minTwoSymbolVal(eduSchoolInput) &&
       checkDateVal(eduDegreeSelect) &&

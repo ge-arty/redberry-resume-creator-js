@@ -28,21 +28,27 @@
           </div>
         <form class="app__personal--form">
           <div class="app__personal--inputbox"> 
-            <div>            
+            <div class="app__validation--mark--box">            
             <label for="name">სახელი</label>
             <input placeholder="ანზორ" class="app__personal--name--input" type="text">
+            <div class="app__validate--mark--green1"></div>
+            <div class="app__validate--mark--red1"></div>
             <p class="app__input--validation">მინიმუმ 2 ასო, ქართული ასოები</p>
             </div>
-            <div>            
+            <div class="app__validation--mark--box">            
             <label for="lastname">გვარი</label>
             <input placeholder="მუმლაძე" class="app__personal--lastname--input" type="text">
+            <div class="app__validate--mark--green2"></div>
+            <div class="app__validate--mark--red2"></div>
             <p class="app__input--validation">მინიმუმ 2 ასო, ქართული ასოები</p>   
             </div>
           </div>
           <div class="app__upload--box">            
             <label for="file__upload">პირადი ფოტოს ატვირთვა (სავალდებულო)</label>
             <input class="app__file--input" type="file">
-            <button class="app__upload--btn">ატვირთვა</button> 
+            <button class="app__upload--btn">ატვირთვა</button>
+            <div class="app__validate--mark--red-upload"></div>
+            <div class="app__validate--mark--green-upload"></div>
           </div>
           <div class="app__about--box">
             <label for="about">ჩემ შესახებ (არასავალდებულო)</label>
@@ -51,11 +57,15 @@
           <div class="app__email--box">
             <label for="about">ელ.ფოსტა</label>
             <input class="app__input--email" placeholder="anzorr666@redberry.ge" type="email">
+            <div class="app__validate--mark--green-max-width1"></div>
+            <div class="app__validate--mark--red-max-width1"></div>
             <p class="app__input--validation">უნდა მთავრდებოდეს @redberry.ge-ით</p>
           </div>
           <div class="app__mobile--box">
             <label for="about">მობილურის ნომერი</label>
             <input class="app__input--mobile" placeholder="+995 551 12 34 56" type="">
+            <div class="app__validate--mark--green-max-width2"></div>
+            <div class="app__validate--mark--red-max-width2"></div>
             <p class="app__input--validation">უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს</p>
           </div>
           <div class="app__personal--btnbox">
@@ -116,6 +126,8 @@
         <div class="app__school--box">
         <label for="school-name">სასწავლებელი</label>
         <input class="app__education--school" placeholder="სასწავლებელი" type="text">
+        <div class="app__validate--mark--red-max-width"></div>
+        <div class="app__validate--mark--green-max-width"></div>
         <p class="app__input--validation">მინიმუმ 2 სიმბოლო</p>
       </div>
       <div class="app__school--graduation--box">
@@ -153,19 +165,23 @@
         <div class="app__position--box">
           <label for="position">თანამდებობა</label>
           <input class="app__input--position" placeholder="დეველოპერი, დიზაინერი, ა.შ." type="text">
+          <div class="app__validate--mark--green-max-width"></div>
+          <div class="app__validate--mark--red-max-width"></div>
           <p class="app__input--validation">მინიმუმ 2 სიმბოლო</p>
         </div>
         <div class="app__employer--box">
           <label for="employer">დამსაქმებელი</label>
           <input class="app__input--employer" placeholder="დამსაქმებელი" type="text">
+          <div class="app__validate--mark--green-max-width"></div>
+          <div class="app__validate--mark--red-max-width"></div>
           <p class="app__input--validation">მინიმუმ 2 სიმბოლო</p>
         </div>
         <div class="app__date--box">
-          <div>
+          <div >
             <label for="first-date">დაწყების რიცხვი</label>
             <input value="" placeholder="mm / dd / yyyy" class="app__date--input1" type="date">
           </div>
-          <div>
+          <div >
             <label for="second-date">დამთავრების რიცხვი</label>
             <input  placeholder="mm / dd / yyyy" class="app__date--input2"  type="date">
           </div>

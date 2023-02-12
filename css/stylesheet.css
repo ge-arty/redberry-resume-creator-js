@@ -179,6 +179,9 @@ select::after {
   width: 46.1%;
   row-gap: 8px;
 }
+.app__validation--mark--box {
+  position: relative;
+}
 .app__personal--name--input {
   width: 100%;
   padding: 14px 16px;
@@ -191,6 +194,7 @@ select::after {
 }
 .app__upload--box {
   margin-top: 54px;
+  position: relative;
 }
 .app__file--input {
   display: none;
@@ -233,6 +237,7 @@ select::after {
   flex-direction: column;
   row-gap: 8px;
   width: 100%;
+  position: relative;
 }
 .app__input--email {
   width: 100%;
@@ -247,6 +252,7 @@ select::after {
   flex-direction: column;
   row-gap: 8px;
   width: 100%;
+  position: relative;
 }
 .app__input--mobile {
   width: 100%;
@@ -286,6 +292,7 @@ select::after {
   flex-direction: column;
   row-gap: 8px;
   width: 100%;
+  position: relative;
 }
 .app__input--position {
   width: 100%;
@@ -300,6 +307,7 @@ select::after {
   row-gap: 8px;
   width: 100%;
   margin-top: 31px;
+  position: relative;
 }
 .app__input--employer {
   width: 100%;
@@ -414,6 +422,7 @@ select::after {
   align-items: start;
   row-gap: 8px;
   flex-direction: column;
+  position: relative;
 }
 .app__education--school {
   width: 100%;
@@ -666,4 +675,96 @@ select::after {
 }
 .app__input--red {
   border: 1px solid #ef5050;
+}
+.app__validate--mark--green1 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-green.png") no-repeat;
+  background-position: center;
+  right: -55px;
+  opacity: 0;
+}
+.app__validate--mark--red1 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-red.png") no-repeat;
+  background-position: center;
+  right: -105px;
+  opacity: 0;
+}
+.app__validate--mark--green2 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-green.png") no-repeat;
+  background-position: center;
+  right: -55px;
+  opacity: 0;
+}
+.app__validate--mark--red2 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-red.png") no-repeat;
+  background-position: center;
+  right: -105px;
+  opacity: 0;
+}
+.app__validate--mark--green-upload {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-green.png") no-repeat;
+  background-position: center;
+  left: 470px;
+  top: 2px;
+  opacity: 0;
+}
+.app__validate--mark--red-upload {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-red.png") no-repeat;
+  background-position: center;
+  left: 470px;
+  top: 2px;
+  opacity: 0;
+}
+.app__validate--mark--green-max-width1 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-green.png") no-repeat;
+  background-position: center;
+  right: 15px;
+  opacity: 0;
+}
+.app__validate--mark--red-max-width1 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-red.png") no-repeat;
+  background-position: center;
+  right: -35px;
+  opacity: 0;
+}
+.app__validate--mark--green-max-width2 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-green.png") no-repeat;
+  background-position: center;
+  right: 15px;
+  opacity: 0;
+}
+.app__validate--mark--red-max-width2 {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  background: url("../img/validated-red.png") no-repeat;
+  background-position: center;
+  right: -35px;
+  opacity: 0;
 }
