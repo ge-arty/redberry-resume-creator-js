@@ -349,7 +349,7 @@ personalNextBtn.addEventListener("click", function (e) {
     validateGeorgianMobile(mobileInput.value) &&
     picUploadInput.files[0]
   ) {
-    resumePersonalBlock.style.borderBottom = "1px solid #c8c8c8";
+    resumeExperTitle.style.display = "block";
     personalForm.style.display = "none";
     pageTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
     pageNumber.textContent = "2/3";
@@ -403,7 +403,9 @@ function addNewPositionExperience() {
     ".app__resume--experience--position"
   );
   function jobInfo(input1, input2) {
-    return (resumeExperPosition.textContent = input1 + " " + "," + input2);
+    return (resumeExperPosition.textContent = `${input1}${
+      input1 ? " " + "," + input2 : input2
+    }`);
   }
   // Experience Page Validation Marks
   const positionInputValidMarkGreen = positionTemplate.querySelector(
@@ -424,7 +426,6 @@ function addNewPositionExperience() {
     ".app__resume--experience--title"
   );
   if (minTwoSymbolVal(positionInput)) {
-    resumeExperTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
     positionInput.classList.add("app__input--green");
     positionInput.classList.remove("app__input--red");
     positionInputValidMarkGreen.style.opacity = "100";
@@ -439,7 +440,6 @@ function addNewPositionExperience() {
     sessionStorage.setItem("position", positionInput.value);
     jobInfo(positionInput.value, employerInput.value);
     if (minTwoSymbolVal(positionInput)) {
-      resumeExperTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
       positionInput.classList.add("app__input--green");
       positionInput.classList.remove("app__input--red");
       positionInputValidMarkGreen.style.opacity = "100";
@@ -454,13 +454,13 @@ function addNewPositionExperience() {
       positionInputValidMarkGreen.style.opacity = "0";
       positionInputValidMarkRed.style.opacity = "100";
     } else {
-      resumeExperTitle.textContent = " ";
       positionInput.classList.remove("app__input--green");
       positionInput.classList.remove("app__input--red");
       positionInputValidMarkGreen.style.opacity = "0";
       positionInputValidMarkRed.style.opacity = "0";
     }
   });
+
   const employerInput = positionTemplate.querySelector(".app__input--employer");
   employerInput.value = sessionStorage.getItem("employer");
   if (minTwoSymbolVal(employerInput)) {
@@ -505,13 +505,19 @@ function addNewPositionExperience() {
     ".app__resume--experience--date"
   );
   function fullDate(string1, string2) {
-    return (resumeExperDate.textContent = string1 + "-" + string2);
+    return (resumeExperDate.textContent = `${string1}${
+      string1 ? "-" + string2 : string2
+    }`);
   }
+
   experDate1.value = sessionStorage.getItem("experDate1");
   experDate2.value = sessionStorage.getItem("experDate2");
   if (checkDateVal(experDate1)) {
     experDate1.classList.add("app__input--green");
     experDate1.classList.remove("app__input--red");
+  } else {
+    experDate1.classList.remove("app__input--green");
+    experDate1.classList.add("app__input--red");
   }
   fullDate(experDate1.value, experDate2.value);
   experDate1.addEventListener("change", function () {
@@ -528,6 +534,9 @@ function addNewPositionExperience() {
   if (checkDateVal(experDate1)) {
     experDate2.classList.add("app__input--green");
     experDate2.classList.remove("app__input--red");
+  } else {
+    experDate2.classList.remove("app__input--green");
+    experDate2.classList.add("app__input--red");
   }
   experDate2.addEventListener("change", function () {
     fullDate(experDate1.value, experDate2.value);
@@ -551,6 +560,9 @@ function addNewPositionExperience() {
   if (checkDateVal(experDescription)) {
     experDescription.classList.add("app__input--green");
     experDescription.classList.remove("app__input--red");
+  } else {
+    experDescription.classList.remove("app__input--green");
+    experDescription.classList.add("app__input--red");
   }
   experDescription.addEventListener("keyup", function () {
     sessionStorage.setItem("experDescription", experDescription.value);
@@ -589,6 +601,7 @@ function addNewPositionExperience() {
       checkDateVal(experDate1) &&
       checkDateVal(experDate2)
     ) {
+      resumeEduTitle.style.display = "block";
       experForm.style.display = "none";
       pageTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
       pageNumber.textContent = "3/3";
@@ -603,6 +616,7 @@ experBackBtn.addEventListener("click", function (e) {
   personalForm.style.display = "flex";
   pageTitle.textContent = "ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ";
   pageNumber.textContent = "1/3";
+  resumeExperTitle.style.display = "none";
 });
 // Education Form Func
 function addNewPositionEducation() {
@@ -628,11 +642,11 @@ function addNewPositionEducation() {
     ".app__resume--education--school"
   );
   function fullName(input1, input2) {
-    return (resumeEduSchool.textContent = input1 + " " + input2);
+    return (resumeEduSchool.textContent = `${input1}  ${
+      input1 ? " " + "," + input2 : input2
+    }`);
   }
-  const resumeEduTitle = document.querySelector(
-    ".app__resume--education--title"
-  );
+
   const schoolInputValidMarkGreen = positionTemplateSecond.querySelector(
     ".app__validate--mark--green-max-width5"
   );
@@ -641,7 +655,6 @@ function addNewPositionEducation() {
   );
   eduSchoolInput.value = sessionStorage.getItem("eduSchool");
   if (minTwoSymbolVal(eduSchoolInput)) {
-    resumeEduTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
     eduSchoolInput.classList.add("app__input--green");
     eduSchoolInput.classList.remove("app__input--red");
     schoolInputValidMarkGreen.style.opacity = "100";
@@ -656,7 +669,6 @@ function addNewPositionEducation() {
     fullName(eduSchoolInput.value, eduDegreeSelect.value);
     sessionStorage.setItem("eduSchool", eduSchoolInput.value);
     if (minTwoSymbolVal(eduSchoolInput)) {
-      resumeEduTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
       eduSchoolInput.classList.add("app__input--green");
       eduSchoolInput.classList.remove("app__input--red");
       schoolInputValidMarkGreen.style.opacity = "100";
@@ -696,9 +708,6 @@ function addNewPositionEducation() {
     }
   });
 
-  function fullName(input1, input2) {
-    return (resumeEduSchool.textContent = input1 + " " + "," + input2);
-  }
   eduDegreeSelect.addEventListener("change", function () {
     let selectedOption =
       eduDegreeSelect.options[eduDegreeSelect.selectedIndex].textContent;
@@ -727,6 +736,9 @@ function addNewPositionEducation() {
   if (checkDateVal(eduDateInput)) {
     eduDateInput.classList.add("app__input--green");
     eduDateInput.classList.remove("app__input--red");
+  } else {
+    eduDateInput.classList.remove("app__input--green");
+    eduDateInput.classList.add("app__input--red");
   }
 
   eduDateInput.addEventListener("change", function () {
@@ -746,6 +758,9 @@ function addNewPositionEducation() {
   if (checkDateVal(eduDescriptionInput)) {
     eduDescriptionInput.classList.add("app__input--green");
     eduDescriptionInput.classList.remove("app__input--red");
+  } else {
+    eduDescriptionInput.classList.remove("app__input--green");
+    eduDescriptionInput.classList.add("app__input--red");
   }
   const resumeEduDescription = educationTemplate.querySelector(
     ".app__resume--education--description"
@@ -774,12 +789,18 @@ function addNewPositionEducation() {
       submit();
       personalInfoPage.style.display = "none";
       resumePage.style.margin = "0 auto";
+      resumePage.style.marginTop = "54px";
+      resumePage.style.border = "1px solid #E4E4E4";
+      resumePage.style.boxShadow = "0px 4px 28px rgba(0, 0, 0, 0.25)";
+      resumePage.style.borderRadius = "3px";
       sessionStorage.clear();
     }
   });
 }
+const resumeEduTitle = document.querySelector(".app__resume--education--title");
 eduBackBtn.addEventListener("click", function (e) {
   e.preventDefault();
+  resumeEduTitle.style.display = "none";
   experForm.style.display = "flex";
   eduForm.style.display = "none";
   pageNumber.textContent = "2/3";

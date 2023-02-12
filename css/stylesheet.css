@@ -113,6 +113,7 @@ select::after {
   display: none;
   justify-content: center;
   position: relative;
+  padding-bottom: 129px;
 }
 .app__personal--backbtn {
   background: #fff;
@@ -179,6 +180,7 @@ select::after {
   width: 46.1%;
   row-gap: 8px;
 }
+
 .app__validation--mark--box {
   position: relative;
 }
@@ -260,6 +262,7 @@ select::after {
   height: 48px;
 }
 .app__personal--nextbtn {
+  cursor: pointer;
   margin-top: 158.7px;
   height: 48px;
   width: 151px;
@@ -282,7 +285,7 @@ select::after {
   margin: 0 auto;
   width: 72.8%;
 }
-.app__experience--form > div {
+.position-wrap {
   margin-top: 77px;
 }
 .app__position--box {
@@ -413,7 +416,7 @@ select::after {
   margin: 0 auto;
   width: 72.8%;
 }
-.app__education--form > div {
+.education-wrap {
   margin-top: 77px;
 }
 .app__school--box {
@@ -528,7 +531,7 @@ select::after {
   width: 42.9%;
   background-color: #fff;
   position: relative;
-  padding-bottom: 10%;
+  padding-bottom: 305px;
 }
 .app__resume--logo {
   left: 9.4%;
@@ -540,7 +543,7 @@ select::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 48px 75px 16px 80px;
+  padding: 48px 75px 47px 80px;
 }
 .app__resume--personalinfo {
   width: 70%;
@@ -607,6 +610,7 @@ select::after {
   font-size: 18px;
   line-height: 22px;
   color: #f93b1d;
+  display: none;
 }
 .app__resume--experience--position {
   font-style: normal;
@@ -632,11 +636,13 @@ select::after {
   line-height: 22px;
   text-transform: capitalize;
   color: #000000;
+  overflow: hidden;
 }
 .app__resume--education--box {
   padding: 24px 80px 19px 80px;
 }
 .app__resume--education--title {
+  display: none;
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
