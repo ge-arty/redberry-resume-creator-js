@@ -1,7 +1,9 @@
 // Pop up window
 const popWindow = document.querySelector(".app__pop--window");
 const popWindowCloseBtn = document.querySelector(".app__pop--window--btn ");
-
+popWindowCloseBtn.addEventListener("click", function () {
+  popWindow.style.display = "none";
+});
 addNewPositionEducation();
 const eduCreateFormBtn = document.querySelector(".app__addedu--btn");
 eduCreateFormBtn.addEventListener("click", function (e) {
