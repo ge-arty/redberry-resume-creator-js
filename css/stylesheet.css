@@ -113,7 +113,6 @@ select::after {
   display: none;
   justify-content: center;
   position: relative;
-  padding-bottom: 129px;
 }
 .app__personal--backbtn {
   background: #fff;

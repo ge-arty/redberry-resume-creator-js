@@ -847,6 +847,7 @@ function addNewPositionEducation() {
       resumePage.style.border = "1px solid #E4E4E4";
       resumePage.style.boxShadow = "0px 4px 28px rgba(0, 0, 0, 0.25)";
       resumePage.style.borderRadius = "3px";
+      appSection.style.paddingBottom = "129px";
       sessionStorage.clear();
     }
   });
