@@ -834,6 +834,7 @@ function addNewPositionEducation() {
   const eduNextBtn = document.querySelector(".app__education--finish--btn");
   eduNextBtn.addEventListener("click", function (e) {
     e.preventDefault();
+
     if (
       minTwoSymbolVal(eduSchoolInput) &&
       checkDateVal(eduDegreeSelect) &&
@@ -841,14 +842,6 @@ function addNewPositionEducation() {
       checkDateVal(eduDescriptionInput)
     ) {
       submit();
-      personalInfoPage.style.display = "none";
-      resumePage.style.margin = "0 auto";
-      resumePage.style.marginTop = "54px";
-      resumePage.style.border = "1px solid #E4E4E4";
-      resumePage.style.boxShadow = "0px 4px 28px rgba(0, 0, 0, 0.25)";
-      resumePage.style.borderRadius = "3px";
-      appSection.style.paddingBottom = "129px";
-      sessionStorage.clear();
     }
   });
 }
@@ -891,10 +884,24 @@ function submit() {
     .post("https://resume.redberryinternship.ge/api/cvs", formData)
     .then((response) => {
       console.log(response.data);
+      if (response.data.error) {
+        alert("Please fill all inputs");
+        return;
+      }
+
       popWindow.style.display = "block";
+      personalInfoPage.style.display = "none";
+      resumePage.style.margin = "0 auto";
+      resumePage.style.marginTop = "54px";
+      resumePage.style.border = "1px solid #E4E4E4";
+      resumePage.style.boxShadow = "0px 4px 28px rgba(0, 0, 0, 0.25)";
+      resumePage.style.borderRadius = "3px";
+      appSection.style.paddingBottom = "129px";
+      sessionStorage.clear();
     })
     .catch((error) => {
       console.error(error);
+      alert("Please fill all inputs ,before sending!");
     });
 }
 
