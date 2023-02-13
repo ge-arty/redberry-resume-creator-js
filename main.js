@@ -51,6 +51,7 @@ const resumeExperTitle = document.querySelector(
   ".app__resume--experience--title"
 );
 const resumeGrayLine = document.querySelector(".app__resume--gray-line");
+const resumeGrayLine2 = document.querySelector(".app__resume--gray-line2");
 // Experience Page
 const experForm = document.querySelector(".app__experience--form");
 const employerInput = document.querySelector(".app__input--employer");
@@ -429,9 +430,6 @@ function addNewPositionExperience() {
   );
   const positionInput = positionTemplate.querySelector(".app__input--position");
   positionInput.value = sessionStorage.getItem("position");
-  const resumeExperTitle = experienceTemplate.querySelector(
-    ".app__resume--experience--title"
-  );
   if (minTwoSymbolVal(positionInput)) {
     positionInput.classList.add("app__input--green");
     positionInput.classList.remove("app__input--red");
@@ -516,6 +514,22 @@ function addNewPositionExperience() {
       string1 ? "-" + string2 : string2
     }`);
   }
+  const resumeExperTitle = document.querySelector(
+    ".app__resume--experience--title"
+  );
+  const experForm = document.querySelector(".app__experience--form");
+  const inputs = experForm.querySelectorAll("input");
+  const textArea = experForm.querySelectorAll("textarea");
+  inputs.forEach((element) => {
+    if (element.value) {
+      resumeExperTitle.style.display = "block";
+    }
+  });
+  textArea.forEach((element) => {
+    if (element.value) {
+      resumeExperTitle.style.display = "block";
+    }
+  });
 
   experDate1.value = sessionStorage.getItem("experDate1");
   experDate2.value = sessionStorage.getItem("experDate2");
@@ -613,17 +627,35 @@ function addNewPositionExperience() {
       pageTitle.textContent = "ᲒᲐᲜᲐᲗᲚᲔᲑᲐ";
       pageNumber.textContent = "3/3";
       eduForm.style.display = "flex";
+      resumeGrayLine2.style.display = "block";
     }
   });
 }
 
 experBackBtn.addEventListener("click", function (e) {
   e.preventDefault();
+  const experForm = document.querySelector(".app__experience--form");
+  const resumeExperTitle = document.querySelector(
+    ".app__resume--experience--title"
+  );
   experForm.style.display = "none";
   personalForm.style.display = "flex";
   pageTitle.textContent = "ᲞᲘᲠᲐᲓᲘ ᲘᲜᲤᲝ";
   pageNumber.textContent = "1/3";
   resumeExperTitle.style.display = "none";
+
+  const inputs = experForm.querySelectorAll("input");
+  const textArea = experForm.querySelectorAll("textarea");
+  inputs.forEach((element) => {
+    if (element.value) {
+      resumeExperTitle.style.display = "block";
+    }
+  });
+  textArea.forEach((element) => {
+    if (element.value) {
+      resumeExperTitle.style.display = "block";
+    }
+  });
 });
 // Education Form Func
 function addNewPositionEducation() {
@@ -639,7 +671,7 @@ function addNewPositionEducation() {
     .prepend(positionTemplateSecond);
   // Insert into generated CV
   insertAfter(
-    document.getElementsByClassName("app__resume--logo")[0],
+    document.getElementsByClassName("app__resume--education--title")[0],
     educationTemplate
   );
   const eduSchoolInput = positionTemplateSecond.querySelector(
@@ -738,7 +770,22 @@ function addNewPositionEducation() {
   const resumeEduDate = educationTemplate.querySelector(
     ".app__resume--education--date"
   );
-
+  const resumeEduTitle = document.querySelector(
+    ".app__resume--education--title"
+  );
+  const eduForm = document.querySelector(".app__education--form");
+  const inputs = eduForm.querySelectorAll("input");
+  const textArea = eduForm.querySelectorAll("textarea");
+  inputs.forEach((element) => {
+    if (element.value) {
+      resumeEduTitle.style.display = "block";
+    }
+  });
+  textArea.forEach((element) => {
+    if (element.value) {
+      resumeEduTitle.style.display = "block";
+    }
+  });
   resumeEduDate.textContent = eduDateInput.value;
   if (checkDateVal(eduDateInput)) {
     eduDateInput.classList.add("app__input--green");
@@ -806,12 +853,26 @@ function addNewPositionEducation() {
 }
 const resumeEduTitle = document.querySelector(".app__resume--education--title");
 eduBackBtn.addEventListener("click", function (e) {
+  const eduForm = document.querySelector(".app__education--form");
   e.preventDefault();
   resumeEduTitle.style.display = "none";
   experForm.style.display = "flex";
   eduForm.style.display = "none";
   pageNumber.textContent = "2/3";
   pageTitle.textContent = "ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ";
+
+  const inputs = eduForm.querySelectorAll("input");
+  const textArea = eduForm.querySelectorAll("textarea");
+  inputs.forEach((element) => {
+    if (element.value) {
+      resumeEduTitle.style.display = "block";
+    }
+  });
+  textArea.forEach((element) => {
+    if (element.value) {
+      resumeEduTitle.style.display = "block";
+    }
+  });
 });
 // insert Function
 function insertAfter(referenceNode, newNode) {
