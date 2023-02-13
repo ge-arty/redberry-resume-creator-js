@@ -1,3 +1,7 @@
+// Pop up window
+const popWindow = document.querySelector(".app__pop--window");
+const popWindowCloseBtn = document.querySelector(".app__pop--window--btn ");
+
 addNewPositionEducation();
 const eduCreateFormBtn = document.querySelector(".app__addedu--btn");
 eduCreateFormBtn.addEventListener("click", function (e) {
@@ -823,6 +827,7 @@ function submit() {
     .post("https://resume.redberryinternship.ge/api/cvs", formData)
     .then((response) => {
       console.log(response.data);
+      popWindow.style.display = "block";
     })
     .catch((error) => {
       console.error(error);
